@@ -1,11 +1,11 @@
 import { About } from "../../components/About/About";
-import { Hero } from "../../components/Hero/Hero";
-import { Skills } from "../../components/Skills/Skills";
+import { HomeHero } from "./Hero";
+import { Skills } from "./Skills";
 
 const Home = () => {
   return (
     <>
-      <Hero></Hero>
+      <HomeHero></HomeHero>
       <About></About>
       <Skills></Skills>
     </>

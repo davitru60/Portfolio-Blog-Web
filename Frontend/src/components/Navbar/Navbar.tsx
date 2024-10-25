@@ -12,6 +12,14 @@ const Navbar = () => {
   };
 
   const ulStyles = "mt-4 space-y-2";
+  let icon;
+
+  // Determine which icon to show based on darkMode state
+  if (darkMode) {
+    icon = <FaSun className="w-6 h-6 text-yellow-500" />;
+  } else {
+    icon = <FaMoon className="w-6 h-6 text-black" />;
+  }
 
   return (
     <nav className="p-4 shadow-md bg-white dark:bg-black">
@@ -64,7 +72,7 @@ const Navbar = () => {
           onClick={toggleDarkMode}
           className="ml-4 focus:outline-none text-black dark:text-white"
         >
-          {darkMode ? <FaSun className="w-6 h-6 text-yellow-500" /> : <FaMoon className="w-6 h-6 text-black" />}
+          {icon}
         </button>
       </div>
       <div

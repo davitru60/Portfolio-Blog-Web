@@ -4,6 +4,11 @@ import './App.css';
 import { Navbar } from './components/Navbar/Navbar';
 import { Home } from './pages/Home/Home';
 import { DarkModeProvider, useDarkMode } from './context/DarkModeContext';
+import { Blog } from './pages/Blog/Blog';
+import { Post } from './pages/Post/Post';
+
+
+
 
 const AppContent = () => {
   const { darkMode } = useDarkMode();
@@ -22,6 +27,8 @@ const AppContent = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog/>} />
+        <Route path="/blog/:slug" element={<Post />} />
       </Routes>
     </div>
   );
