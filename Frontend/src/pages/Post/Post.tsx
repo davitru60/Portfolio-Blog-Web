@@ -2,7 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BlogService } from "../../services/blogService";
-import MarkdownContent from "../../components/MarkdownContent/MarkdownContent";
+import {MarkdownContent} from "../../components/MarkdownContent/MarkdownContent";
 
 
 const Post = () => {
@@ -26,8 +26,9 @@ const Post = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">{post.fields.title}</h1>
-      <MarkdownContent content={post.fields.content}
-      />
+      <div className="my-4 p-4 max-w-4xl mx-auto"> 
+        <MarkdownContent content={post.fields.content} />
+      </div>
     </div>
   );
 };
