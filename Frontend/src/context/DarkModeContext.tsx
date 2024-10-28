@@ -17,11 +17,11 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     // Aplicar la clase al body según el modo
     if (darkMode) {
-      document.body.classList.add('bg-black', 'text-white');
+      document.body.classList.add('bg-zinc-900', 'text-white');
       document.body.classList.remove('bg-white', 'text-black');
     } else {
       document.body.classList.add('bg-white', 'text-black');
-      document.body.classList.remove('bg-black', 'text-white');
+      document.body.classList.remove('bg-zinc-900', 'text-white');
     }
   }, [darkMode]);
 

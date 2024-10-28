@@ -1,4 +1,4 @@
-import { About } from "../../components/About/About";
+import { About } from "./About";
 import { HomeHero } from "./Hero";
 import { Skills } from "./Skills";
 

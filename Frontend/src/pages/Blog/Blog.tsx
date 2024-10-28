@@ -6,22 +6,65 @@ import { BlogCard } from "./BlogCard";
 
 const Blog = () => {
   const [posts, setPosts] = useState<any[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState<any[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const data = await BlogService.getStaticProps();
+      const data = await BlogService.getBlogPosts();
       setPosts(data.props.post);
-      console.log(data.props.post);
+      setFilteredPosts(data.props.post);
     };
 
     fetchPosts();
   }, []);
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const data = await BlogService.getCategories();
+      setCategories(data.props.category.map((cat: any) => cat.fields.name));
+    };
+
+    fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const results = posts.filter((post) => {
+      const matchesSearch =
+        post.fields.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.fields.summary.toLowerCase().includes(searchTerm.toLowerCase());
+
+      const matchesCategory =
+        selectedCategories.length === 0 ||
+        selectedCategories.some(
+          (selectedCategory) =>
+            post.fields.tags &&
+            post.fields.tags.some(
+              (tag: { fields: { name: string } }) =>
+                tag.fields.name === selectedCategory,
+            ),
+        );
+
+      return matchesSearch && matchesCategory;
+    });
+
+    setFilteredPosts(results);
+  }, [searchTerm, posts, selectedCategories]);
+
   return (
     <>
-      <BlogHeader></BlogHeader>
+      <BlogHeader
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        categories={categories}
+        selectedCategories={selectedCategories}
+        setSelectedCategories={setSelectedCategories}
+        resultCount={filteredPosts.length}
+      />
       <div className="container mx-auto p-4">
-        <BlogCard posts={posts}></BlogCard>
+        <BlogCard posts={filteredPosts} />
       </div>
     </>
   );
