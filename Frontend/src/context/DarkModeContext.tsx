@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from 'react';
 
 // Definir los tipos para el contexto
 interface DarkModeContextType {
@@ -7,7 +13,9 @@ interface DarkModeContextType {
 }
 
 // Crear el contexto con un valor predeterminado
-const DarkModeContext = createContext<DarkModeContextType | undefined>(undefined);
+const DarkModeContext = createContext<DarkModeContextType | undefined>(
+  undefined,
+);
 
 // Proveedor del contexto
 export const DarkModeProvider = ({ children }: { children: ReactNode }) => {

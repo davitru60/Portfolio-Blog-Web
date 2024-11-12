@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-interface CustomCodeBlockProps{
+interface CustomCodeBlockProps {
   node: string;
   inline: string;
-  className:string;
+  className: string;
   children: string;
-  props: any []
+  props: any[];
 }
 
 const CustomCodeBlock = (customCodeBlockProps: CustomCodeBlockProps) => {
@@ -19,13 +19,13 @@ const CustomCodeBlock = (customCodeBlockProps: CustomCodeBlockProps) => {
       language={match[1]}
       PreTag="div"
       {...props}
-      className="rounded-lg mb-4"
+      className="mb-4 rounded-lg text-sm"
     >
       {String(children).replace(/\n$/, '')}
     </SyntaxHighlighter>
   ) : (
-    <code className="bg-gray-100 dark:bg-gray-800 rounded p-1">{children}</code>
+    <code className="rounded bg-gray-100 p-1 dark:bg-gray-800">{children}</code>
   );
 };
 
-export {CustomCodeBlock};
+export { CustomCodeBlock };

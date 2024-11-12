@@ -6,19 +6,16 @@ import { Home } from './pages/Home/Home';
 import { DarkModeProvider, useDarkMode } from './context/DarkModeContext';
 import { Blog } from './pages/Blog/Blog';
 import { Post } from './pages/Post/Post';
-
-
-
+import { About } from './pages/About/About';
 
 const AppContent = () => {
   const { darkMode } = useDarkMode();
 
   useEffect(() => {
-    // Aplica o elimina la clase 'dark' en el <html> según el estado de darkMode
     if (darkMode) {
-      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove('dark');
     }
   }, [darkMode]);
 
@@ -27,8 +24,9 @@ const AppContent = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog/>} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<Post />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );
@@ -44,4 +42,4 @@ const App = () => {
   );
 };
 
-export default App;  
+export default App;

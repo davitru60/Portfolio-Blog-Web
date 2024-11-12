@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-import { BlogService } from "../../services/blogService";
-import { BlogHeader } from "./BlogHeader";
-import { BlogCard } from "./BlogCard";
+import { useEffect, useState } from 'react';
+import { BlogService } from '../../services/blogService';
+import { BlogHeader } from './BlogHeader';
+import { BlogCard } from './BlogCard';
 
 const Blog = () => {
   const [posts, setPosts] = useState<any[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [filteredPosts, setFilteredPosts] = useState<any[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
@@ -24,7 +24,10 @@ const Blog = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       const data = await BlogService.getCategories();
-      setCategories(data.props.category.map((cat: any) => cat.fields.name));
+      const categoryName = data.props.category.map((cat: any) => {
+        return cat.fields.name;
+      });
+      setCategories(categoryName);
     };
 
     fetchCategories();
@@ -63,7 +66,7 @@ const Blog = () => {
         setSelectedCategories={setSelectedCategories}
         resultCount={filteredPosts.length}
       />
-      <div className="container mx-auto p-4">
+      <div className="mx-auto p-4">
         <BlogCard posts={filteredPosts} />
       </div>
     </>

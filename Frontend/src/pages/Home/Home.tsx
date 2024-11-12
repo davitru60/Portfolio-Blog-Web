@@ -1,13 +1,13 @@
-import { About } from "./About";
-import { HomeHero } from "./Hero";
-import { Skills } from "./Skills";
+import { HomeHero } from './Hero';
+import { LatestArticles } from './LatestArticles';
+import { Skills } from './Skills';
 
 const Home = () => {
   return (
     <>
       <HomeHero></HomeHero>
-      <About></About>
       <Skills></Skills>
+      <LatestArticles></LatestArticles>
     </>
   );
 };

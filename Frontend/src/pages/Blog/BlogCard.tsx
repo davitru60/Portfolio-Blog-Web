@@ -1,64 +1,55 @@
-import { Link } from "react-router-dom";
-import { BlogCardProps, Post, Tag } from "../../types/post";
-import { Button } from "../../components/Button/Button";
+import { Link } from 'react-router-dom';
+import { BlogCardProps, Post, Tag } from '../../interfaces/post';
 
 const BlogCard = (blogCardProps: BlogCardProps) => {
   const { posts } = blogCardProps;
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2  md:px-12 lg:grid-cols-3 lg:px-24">
+    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:px-24">
       {posts.map((post: Post, index: number) => (
-        <div
+        <Link
+          to={`/blog/${post.fields.slug}`}
           key={index}
-          className="flex flex-col dark:rounded-3xl dark:bg-black p-2"
+          className="mx-10 flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-black"
         >
           {post.fields.featuredImage && (
-            <div className="p-4">
+            <div className="w-full">
               <img
                 src={post.fields.featuredImage.fields.file.url}
                 alt={post.fields.title}
-                className="mb-4 h-auto max-h-48 w-full rounded-lg object-cover"
+                className="mb-4 h-auto max-h-48 w-full object-cover"
               />
             </div>
           )}
+
           <div className="flex-grow p-4 pt-0">
-            <p className="mb-4 text-xs font-semibold text-gray-900 transition-colors dark:text-white">
-              {post.fields.author.fields.name} -{" "}
-              {new Date(post.fields.publishDate).toLocaleDateString("es-ES", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </p>
-            <Link to={`/blog/${post.fields.slug}`}>
-              <h2 className="mb-4 text-xl font-semibold text-gray-900 bg-gradient-text">
-                {post.fields.title}
-              </h2>
-            </Link>
-
-            <div className="mb-4 text-gray-700 dark:text-gray-300">
-              {post.fields.summary}
-            </div>
-
-            <div className="mb-4 flex flex-wrap">
+            <div className="mb-4 flex flex-wrap gap-2">
               {post.fields.tags.map((tag: Tag, tagIndex: number) => (
                 <span
                   key={tagIndex}
-                  className="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800"
+                  className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-800/30 dark:text-blue-200"
                 >
                   {tag.fields.name}
                 </span>
               ))}
             </div>
-          </div>
+            <p className="mb-4 text-xs font-semibold text-gray-900 transition-colors dark:text-gray-300">
+              {post.fields.author.fields.name} -{' '}
+              {new Date(post.fields.publishDate).toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </p>
 
-          <div className="mx-auto p-4 pt-0">
-            <Button
-              className="readMore"
-              content="Leer más"
-              url={`/blog/${post.fields.slug}`}
-            ></Button>
+            <h2 className="mb-2 text-xl font-semibold leading-tight text-gray-700 dark:text-white">
+              {post.fields.title}
+            </h2>
+
+            <div className="mb-4 text-sm text-gray-700 dark:text-white">
+              {post.fields.summary}
+            </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

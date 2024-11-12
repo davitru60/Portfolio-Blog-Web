@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { buttonStyles } from "./ButtonStyle";
+import { Link } from 'react-router-dom';
+import { buttonStyles } from './ButtonStyle';
 
 interface ButtonProps {
   className: keyof typeof buttonStyles;
