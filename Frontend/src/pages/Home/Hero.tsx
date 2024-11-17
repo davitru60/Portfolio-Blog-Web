@@ -4,18 +4,15 @@ import backgroundImage from '../../assets/header.webp';
 const HomeHero = () => {
   return (
     <div className="stack-section">
-      <div className="mx-auto flex h-full w-full flex-col items-center px-4 py-10 md:py-32 text-center">
+      <div className="mx-auto flex h-full w-full flex-col items-center px-4 py-24 text-center">
         <div className="relative flex max-w-3xl flex-col items-center rounded-lg p-8">
           <div
             className="absolute inset-0 rounded-full bg-cover bg-center opacity-25 blur-3xl"
             style={{
               backgroundImage: `url(${backgroundImage})`,
-              zIndex: 50,
-              pointerEvents: "none"
             }}
           ></div>
 
-          {/* Título y texto */}
           <h2 className="z-10 text-xl font-semibold leading-7 text-gray-600 dark:text-gray-300 md:text-3xl lg:text-4xl">
             Hola, soy David
           </h2>
@@ -26,8 +23,6 @@ const HomeHero = () => {
             Como desarrollador web, me dedico a convertir las ideas en
             aplicaciones web innovadoras.
           </p>
-
-          {/* Botones */}
           <div className="z-10 flex space-x-4">
             <Button className="contact" content="Contáctame"></Button>
             <Button

@@ -13,10 +13,8 @@ interface CustomCodeBlockProps {
 const CustomCodeBlock = (customCodeBlockProps: CustomCodeBlockProps) => {
   const { inline, className, children, props } = customCodeBlockProps;
   const match = /language-(\w+)/.exec(className || '');
-
-  if(!inline && match){
-    return (
-      <SyntaxHighlighter
+  return !inline && match ? (
+    <SyntaxHighlighter
       style={atomDark}
       language={match[1]}
       PreTag="div"
@@ -25,10 +23,9 @@ const CustomCodeBlock = (customCodeBlockProps: CustomCodeBlockProps) => {
     >
       {String(children).replace(/\n$/, '')}
     </SyntaxHighlighter>
-    )
-  }else{
-    return  <code className="rounded bg-gray-100 p-1 dark:bg-gray-800">{children}</code>
-  }
+  ) : (
+    <code className="rounded bg-gray-100 p-1 dark:bg-gray-800">{children}</code>
+  );
 };
 
 export { CustomCodeBlock };

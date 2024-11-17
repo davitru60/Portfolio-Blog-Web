@@ -1,4 +1,4 @@
-import { HomeHero } from './HomeHero';
+import { HomeHero } from './Hero';
 import { LatestArticles } from './LatestArticles';
 import { Skills } from './Skills';
 

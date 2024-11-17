@@ -1,13 +1,21 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from 'react';
 
-// Definir el tipo para el contexto
+// Definir los tipos para el contexto
 interface DarkModeContextType {
   darkMode: boolean;
   toggleDarkMode: () => void;
 }
 
 // Crear el contexto con un valor predeterminado
-const DarkModeContext = createContext<DarkModeContextType | undefined>(undefined);
+const DarkModeContext = createContext<DarkModeContextType | undefined>(
+  undefined,
+);
 
 // Proveedor del contexto
 export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
@@ -15,23 +23,24 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
 
   // Cargar la preferencia de modo oscuro desde localStorage
   useEffect(() => {
-    const storedDarkMode = localStorage.getItem('darkMode');
-    if (storedDarkMode) {
-      setDarkMode(JSON.parse(storedDarkMode));
-    }
-  }, []);
-
-  // Aplicar el modo oscuro al body y guardar la preferencia
-  useEffect(() => {
+    // Aplicar la clase al body según el modo
     if (darkMode) {
-      document.body.classList.add('dark');
+      document.body.classList.add('bg-zinc-900', 'text-white');
+      document.body.classList.remove('bg-white', 'text-black');
     } else {
-      document.body.classList.remove('dark');
+      document.body.classList.add('bg-white', 'text-black');
+      document.body.classList.remove('bg-zinc-900', 'text-white');
     }
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
 
-  const toggleDarkMode = () => setDarkMode(prev => !prev);
+  // Guardar la preferencia de modo oscuro en localStorage
+  useEffect(() => {
+    localStorage.setItem('darkMode', String(darkMode));
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => !prev);
+  };
 
   return (
     <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
@@ -41,6 +50,7 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
 };
 
 // Custom hook para usar el contexto
+// eslint-disable-next-line react-refresh/only-export-components
 export const useDarkMode = () => {
   const context = useContext(DarkModeContext);
   if (!context) {

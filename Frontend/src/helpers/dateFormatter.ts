@@ -1,4 +1,4 @@
-import { DateProps } from "../interfaces/date";
+import { DateProps } from '../types/date';
 
 const dateFormatter = (date: string, dateProps: DateProps) => {
   const { locale, year, month, day } = dateProps;
