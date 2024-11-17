@@ -42,37 +42,28 @@ const Navbar = () => {
     setIsOpen(false); // Close the menu when the route changes
   }, [location]);
 
+  const links = [
+    { path: "/", label: "Inicio" },
+    { path: "/projects", label: "Proyectos" },
+    { path: "/blog", label: "Blog" },
+    { path: "/about", label: "Sobre" },
+  ];
+
+  const menuClasses = `overflow-hidden transition-all duration-500 ease-in-out md:hidden ${isOpen ? " max-h-screen" : "max-h-0"}`;
+
   return (
-    <nav className="fixed left-0 right-0 top-0 z-50 bg-white p-4 dark:bg-zinc-900">
-      <div className="flex items-center justify-between md:justify-between">
-        <div className="text-2xl font-bold text-black dark:text-white">
-          Logo
-        </div>
+    <nav className="fixed left-0 right-0 top-0 z-50 bg-white bg-opacity-60 p-4 backdrop-blur-md dark:bg-zinc-900 dark:bg-opacity-60 dark:backdrop-blur-md">
+      <div className="flex items-center justify-end md:justify-center">
         <div className="hidden space-x-6 md:flex">
-          <Link
-            to="/"
-            className="text-black transition duration-300 hover:text-gray-300 dark:text-white dark:hover:text-gray-400"
-          >
-            Inicio
-          </Link>
-          <Link
-            to="/projects"
-            className="text-black transition duration-300 hover:text-gray-300 dark:text-white dark:hover:text-gray-400"
-          >
-            Proyectos
-          </Link>
-          <Link
-            to="/blog"
-            className="text-black transition duration-300 hover:text-gray-300 dark:text-white dark:hover:text-gray-400"
-          >
-            Blog
-          </Link>
-          <Link
-            to="/about"
-            className="text-black transition duration-300 hover:text-gray-300 dark:text-white dark:hover:text-gray-400"
-          >
-            Sobre
-          </Link>
+          {links.map(({ path, label }) => {
+            const isActive = location.pathname === path;
+            const linkClasses = `text-lg font-medium transition duration-300 ${isActive ? "text-blue-500 dark:text-blue-400" : "text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"}`;
+            return (
+              <Link key={path} to={path} className={linkClasses}>
+                {label}
+              </Link>
+            );
+          })}
         </div>
         <div className="flex items-center md:hidden">
           <button
@@ -112,46 +103,20 @@ const Navbar = () => {
       </div>
 
       {/* Menú hamburguesa */}
-      <div
-        className={`overflow-hidden transition-all duration-500 ease-in-out md:hidden ${
-          isOpen ? "max-h-screen" : "max-h-0"
-        }`}
-      >
+      <div className={menuClasses}>
         <ul
           className={`flex flex-col items-center justify-center ${ulStyles} space-y-4`}
         >
-          <li>
-            <Link
-              to="/"
-              className="text-lg text-black transition duration-300 hover:text-gray-300 dark:text-white dark:hover:text-gray-400"
-            >
-              Inicio
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/projects"
-              className="text-lg text-black transition duration-300 hover:text-gray-300 dark:text-white dark:hover:text-gray-400"
-            >
-              Proyectos
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/blog"
-              className="text-lg text-black transition duration-300 hover:text-gray-300 dark:text-white dark:hover:text-gray-400"
-            >
-              Blog
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/about"
-              className="text-lg text-black transition duration-300 hover:text-gray-300 dark:text-white dark:hover:text-gray-400"
-            >
-              Sobre
-            </Link>
-          </li>
+           {links.map(({ path, label }) => {
+            const isActive = location.pathname === path;
+            const linkClasses = `text-lg text-black transition duration-300 dark:text-white dark:hover:text-gray-400 ${isActive ? "text-blue-500 dark:text-blue-400" : "text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"}`;
+            return (
+              <Link key={path} to={path} className={linkClasses}>
+                {label}
+              </Link>
+            );
+          })}
+          
         </ul>
       </div>
     </nav>

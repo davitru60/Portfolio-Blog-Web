@@ -15,7 +15,7 @@ import { SiFigma, SiMysql, SiTailwindcss } from "react-icons/si";
 
 const Skills = () => {
   return (
-    <div className="mx-auto w-10/12 px-6 py-6 md:px-24">
+    <div className="mx-auto w-10/12 px-6  md:px-24">
       <h1 className="bg-gradient-text-1 z-10 mb-3 text-center text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl md:text-6xl lg:text-6xl">
         Habilidades
       </h1>

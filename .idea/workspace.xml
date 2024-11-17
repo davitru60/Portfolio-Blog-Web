@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3c47ce3b-b085-4aec-a53f-05f1a480a665" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/CustomCodeBlock/CustomCodeBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/CustomCodeBlock/CustomCodeBlock.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Navbar/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/context/DarkModeContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/context/DarkModeContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/helpers/dateFormatter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/helpers/dateFormatter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/About/About.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/About/About.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Blog/BlogHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Blog/BlogHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Home/Hero.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Home/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Home/Skills.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Home/Skills.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Post/Post.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Post/Post.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/blogService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/blogService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/tailwind.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2oybMAne40XteAq3BAdTwLRqhHh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/davit/Documents/GitHub"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3c47ce3b-b085-4aec-a53f-05f1a480a665" name="Changes" comment="" />
+      <created>1731844714889</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731844714889</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
