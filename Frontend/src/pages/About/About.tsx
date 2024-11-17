@@ -1,4 +1,4 @@
-import backgroundImage from '../../assets/header.webp';
+import backgroundImage from "../../assets/header.webp";
 
 const About = () => {
   return (
@@ -8,6 +8,10 @@ const About = () => {
           className="absolute inset-0 rounded-full bg-cover bg-center opacity-25 blur-3xl"
           style={{
             backgroundImage: `url(${backgroundImage})`,
+            zIndex: 50,
+            pointerEvents: "none",
+            transform: 'scale(0.75)', 
+            transformOrigin: 'bottom'
           }}
         ></div>
         <h1 className="bg-gradient-text-1 mb-3 text-2xl font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-7xl md:leading-normal">
