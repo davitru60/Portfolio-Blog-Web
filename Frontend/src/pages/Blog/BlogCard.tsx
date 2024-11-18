@@ -9,7 +9,7 @@ const BlogCard = (blogCardProps: BlogCardProps) => {
         <Link
           to={`/blog/${post.fields.slug}`}
           key={index}
-          className="mx-10 flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-black"
+          className="mx-10 flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-black dark:blog-card-dark"
         >
           {post.fields.featuredImage && (
             <div className="w-full">

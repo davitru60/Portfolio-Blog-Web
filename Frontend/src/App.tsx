@@ -2,11 +2,13 @@ import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Navbar } from './components/Navbar/Navbar';
-import { Home } from './pages/Home/Home';
+import { HomePage } from './pages/Home/HomePage';
 import { DarkModeProvider, useDarkMode } from './context/DarkModeContext';
-import { Blog } from './pages/Blog/Blog';
-import { Post } from './pages/Post/Post';
+import { BlogPage } from './pages/Blog/BlogPage';
+import { PostContent } from './pages/Blog/PostContent';
 import { About } from './pages/About/About';
+import { ProjectPage } from './pages/Projects/ProjectPage';
+import { ProjectContent } from './pages/Projects/ProjectContent';
 
 const AppContent = () => {
   const { darkMode } = useDarkMode();
@@ -23,9 +25,11 @@ const AppContent = () => {
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<Post />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/projects" element={<ProjectPage/>} />
+        <Route path="/projects/:slug" element={<ProjectContent/>} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<PostContent />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </div>

@@ -34,7 +34,7 @@ const SkillCard = (skillCardProps: SkillCardProps) => {
 
       <div
         className={
-          skillsContainerClassName || 'mt-3 flex items-center space-x-8'
+          skillsContainerClassName
         }
       >
         {skills?.map((skill, index) => (

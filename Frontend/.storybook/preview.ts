@@ -1,27 +1,25 @@
-// .storybook/preview.ts
 import type { Preview } from "@storybook/react";
-import { withThemeByClassName } from "@storybook/addon-themes";
-import '../src/index.css'; // Asegúrate de que el archivo de Tailwind esté en esta ruta
 
+import { withThemeByClassName } from "@storybook/addon-themes";
 
 const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/,
+        date: /Date$/i,
       },
     },
   },
-  decorators: [
-    withThemeByClassName({
+
+  decorators: [withThemeByClassName({
       themes: {
-        light: 'light', // Tema claro sin clase
-        dark: 'dark',   // Tema oscuro aplicando la clase 'dark'
+          // nameOfTheme: 'classNameForTheme',
+          light: '',
+          dark: 'dark',
       },
-      defaultTheme: 'light', // Define el tema por defecto
-    }),
-  ],
+      defaultTheme: 'light',
+  })]
 };
 
 export default preview;

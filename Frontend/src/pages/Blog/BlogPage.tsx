@@ -4,7 +4,7 @@ import { BlogService } from '../../services/blogService';
 import { BlogHeader } from './BlogHeader';
 import { BlogCard } from './BlogCard';
 
-const Blog = () => {
+const BlogPage = () => {
   const [posts, setPosts] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredPosts, setFilteredPosts] = useState<any[]>([]);
@@ -73,4 +73,4 @@ const Blog = () => {
   );
 };
 
-export { Blog };
+export { BlogPage };

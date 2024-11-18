@@ -1,5 +1,4 @@
 import {
-  FaAngular,
   FaBootstrap,
   FaBullhorn,
   FaClock,
@@ -12,10 +11,11 @@ import {
 } from "react-icons/fa";
 import { SkillCard } from "../../components/Card/SkillCard";
 import { SiFigma, SiMysql, SiTailwindcss } from "react-icons/si";
+import { AngularIcon } from "../../components/Icons/AngularIcon";
 
 const Skills = () => {
   return (
-    <div className="mx-auto w-10/12 px-6  md:px-24">
+    <div className="mx-auto w-10/12 px-6 md:px-24">
       <h1 className="bg-gradient-text-1 z-10 mb-3 text-center text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl md:text-6xl lg:text-6xl">
         Habilidades
       </h1>
@@ -69,14 +69,11 @@ const Skills = () => {
             {
               icon: (
                 <a
-                  href="https://angular.io/"
+                  href="https://angular.dev/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FaAngular
-                    className="text-3xl text-red-600"
-                    title="Angular"
-                  />
+                  <AngularIcon></AngularIcon>
                 </a>
               ),
               name: "Angular",
@@ -94,9 +91,9 @@ const Skills = () => {
               name: "React",
             },
           ]}
-          containerClassName="flex flex-col items-center justify-center h-60 p-6 container-card-light  dark:container-card-dark"
-          titleClassName="text-2xl font-extrabold leading-9 tracking-tight mb-3 bg-gradient-text-1 sm:text-xl md:text-2xl lg:text-3xl z-10 text-center"
-          skillsContainerClassName="grid grid-cols-2 gap-4 mt-4"
+          containerClassName="flex flex-col items-center justify-center p-6 container-card-light dark:container-card-dark"
+          titleClassName="text-xl font-extrabold leading-9 tracking-tight mb-3 bg-gradient-text-1 md:text-2xl lg:text-3xl text-center"
+          skillsContainerClassName="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2"
           skillItemClassName="flex items-center space-x-3 text-black  dark:text-gray-200 text-md font-semibold"
         />
 
@@ -134,9 +131,10 @@ const Skills = () => {
               name: "Laravel",
             },
           ]}
-          containerClassName="flex flex-col items-center justify-center h-60 w-full rounded-3xl bg-black shadow-lg p-6"
+          containerClassName="flex flex-col items-center justify-center p-6 container-card-light dark:container-card-dark"
           titleClassName="text-2xl font-extrabold leading-9 tracking-tight mb-3 bg-gradient-text-1 sm:text-xl md:text-2xl lg:text-3xl z-10 text-center"
-          skillItemClassName="flex items-center space-x-3 text-gray-200 text-md font-semibold"
+          skillsContainerClassName="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2"
+          skillItemClassName="flex items-center space-x-3 text-black  dark:text-gray-200 text-md font-semibold"
         />
 
         <SkillCard
@@ -170,9 +168,10 @@ const Skills = () => {
               name: "MySQL",
             },
           ]}
-          containerClassName="flex flex-col items-center justify-center h-60 w-full rounded-3xl bg-black shadow-lg p-6"
+          containerClassName="flex flex-col items-center justify-center p-6 container-card-light dark:container-card-dark"
           titleClassName="text-2xl font-extrabold leading-9 tracking-tight mb-3 bg-gradient-text-1 sm:text-xl md:text-2xl lg:text-3xl z-10 text-center"
-          skillItemClassName="flex items-center space-x-3 text-gray-200 text-md font-semibold"
+          skillsContainerClassName="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2"
+          skillItemClassName="flex items-center space-x-3 text-black  dark:text-gray-200 text-md font-semibold"
         />
 
         <SkillCard
@@ -239,10 +238,10 @@ const Skills = () => {
               name: "Adaptabilidad",
             },
           ]}
-          containerClassName="flex flex-col items-center justify-center h-60 w-full rounded-3xl bg-black shadow-lg p-6"
+          containerClassName="flex flex-col items-center justify-center p-6 container-card-light dark:container-card-dark"
           titleClassName="text-2xl font-extrabold leading-9 tracking-tight mb-3 bg-gradient-text-1 sm:text-xl md:text-2xl lg:text-3xl z-10 text-center"
-          skillsContainerClassName="grid grid-cols-2 gap-6 mt-4"
-          skillItemClassName="flex items-center space-x-3 text-gray-200 text-md font-semibold"
+          skillsContainerClassName="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2"
+          skillItemClassName="flex items-center space-x-3 text-black  dark:text-gray-200 text-md font-semibold"
         />
       </div>
     </div>

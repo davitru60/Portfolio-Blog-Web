@@ -1,19 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw'; // Importa rehype-raw
-import { CustomCodeBlock } from '../CustomCodeBlock/CustomCodeBlock';
-import { Callout } from '../Callout/Callout';
-import { CustomImage } from '../CustomImage/CustomImage';
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw"; // Importa rehype-raw
+import { CustomCodeBlock } from "../CustomCodeBlock/CustomCodeBlock";
+import { Callout } from "../Callout/Callout";
+import { CustomImage } from "../CustomImage/CustomImage";
+import remarkGfm from "remark-gfm"; // Importa remark-gfm para soportar tablas
 
 interface MarkdownContentProps {
-  content: string;
+  content?: string;
 }
 
 const MarkdownContent = (markdownContentProps: MarkdownContentProps) => {
   const { content } = markdownContentProps;
-  const modifiedContent = content.replace(
-    /:::(info|warning|error)\s*(.*?)\s*:::/gs,
-    '<div class="callout type-$1">$2</div>', // Convierte el marcador a una div con la clase de callout
+  const modifiedContent = content?.replace(
+    /:::(info|warning|error)\s*([^:\n]+)?\s*([\s\S]*?):::/g,
+    (_match, type, title, body) => {
+      // `type`: el tipo de callout (info, warning, error)
+      // `title`: el título (puede estar vacío)
+      // `body`: el contenido del callout
+      return `<div class="callout type-${type}" data-title="${title?.trim() ?? ""}">${body.trim()}</div>`;
+    },
   );
 
   // Renderizadores personalizados para Markdown
@@ -32,15 +38,8 @@ const MarkdownContent = (markdownContentProps: MarkdownContentProps) => {
       const match =
         props.className && /type-(info|warning|error)/.exec(props.className);
       if (match) {
-        const calloutType = match[1];
-        switch (calloutType) {
-          case 'info':
-            return <Callout>{props.children}</Callout>;
-          case 'error':
-            return <Callout>{props.children}</Callout>;
-          default:
-            return <div {...props} />;
-        }
+        const title = props["data-title"]; // Extraer título desde data-title
+        return <Callout title={title}>{props.children}</Callout>;
       }
       return <div {...props} />;
     },
@@ -57,6 +56,28 @@ const MarkdownContent = (markdownContentProps: MarkdownContentProps) => {
       />
     ),
     li: (props: any) => <li className="text-md mb-2">{props.children}</li>,
+
+    // Renderizado de tablas para Markdown
+    table: (props: any) => (
+      <table
+        className="mb-4 w-full table-auto text-left text-gray-700 dark:text-gray-300"
+        {...props}
+      />
+    ),
+
+    thead: (props: any) => (
+      <thead className="bg-gray-200 dark:bg-gray-800">{props.children}</thead>
+    ),
+    tbody: (props: any) => <tbody>{props.children}</tbody>,
+    tr: (props: any) => <tr className="border-b">{props.children}</tr>,
+
+    th: (props: any) => (
+      <th className="px-4 py-2 text-center font-semibold text-gray-900 dark:text-white">
+        {props.children}
+      </th>
+    ),
+
+    td: (props: any) => <td className="px-4 py-2">{props.children}</td>,
   };
 
   return (
@@ -64,6 +85,7 @@ const MarkdownContent = (markdownContentProps: MarkdownContentProps) => {
       children={modifiedContent}
       components={customRenderers}
       rehypePlugins={[rehypeRaw]}
+      remarkPlugins={[remarkGfm]} // Añade remark-gfm aquí
     />
   );
 };

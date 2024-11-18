@@ -3,7 +3,6 @@ import backgroundImage from '../../assets/header.webp';
 
 const HomeHero = () => {
   return (
-    <div className="stack-section">
       <div className="mx-auto flex h-full w-full flex-col items-center px-4 py-10 md:py-32 text-center">
         <div className="relative flex max-w-3xl flex-col items-center rounded-lg p-8">
           <div
@@ -15,20 +14,19 @@ const HomeHero = () => {
             }}
           ></div>
 
-          {/* Título y texto */}
+    
           <h2 className="z-10 text-xl font-semibold leading-7 text-gray-600 dark:text-gray-300 md:text-3xl lg:text-4xl">
             Hola, soy David
           </h2>
           <h1 className="bg-gradient-text-1 z-10 mb-3 text-4xl font-extrabold leading-9 tracking-tight sm:text-4xl md:text-6xl lg:text-8xl">
             Desarrollador web
           </h1>
-          <p className="z-10 mb-8 leading-relaxed dark:text-gray-300 md:text-lg lg:text-2xl">
+          <p className="mb-8 leading-relaxed dark:text-gray-300 md:text-lg lg:text-2xl">
             Como desarrollador web, me dedico a convertir las ideas en
             aplicaciones web innovadoras.
           </p>
 
-          {/* Botones */}
-          <div className="z-10 flex space-x-4">
+          <div className="flex flex-col gap-4 sm:flex sm:flex-row sm:space-x-4">
             <Button className="contact" content="Contáctame"></Button>
             <Button
               className="readArticles"
@@ -38,7 +36,7 @@ const HomeHero = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 

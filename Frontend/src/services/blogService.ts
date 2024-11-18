@@ -15,10 +15,10 @@ class BlogService {
 
   static getCategories = async () => {
     const client = contenfulClient;
-    const entries = await client.getEntries({ content_type: 'category' });
+    const entries = await client.getEntries({ content_type: 'category'});
     return {
       props: {
-        category: entries.items,
+        category: entries.items
       },
     };
   };

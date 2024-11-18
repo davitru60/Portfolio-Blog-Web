@@ -2,7 +2,7 @@ import { HomeHero } from './HomeHero';
 import { LatestArticles } from './LatestArticles';
 import { Skills } from './Skills';
 
-const Home = () => {
+const HomePage = () => {
   return (
     <>
       <HomeHero></HomeHero>
@@ -12,4 +12,4 @@ const Home = () => {
   );
 };
 
-export { Home };
+export { HomePage };

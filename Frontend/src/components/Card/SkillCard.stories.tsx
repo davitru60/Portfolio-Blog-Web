@@ -8,7 +8,7 @@ import { FaBootstrap } from "react-icons/fa";
 import { AngularIcon } from "../Icons/AngularIcon";
 import "../../index.css";
 
-// Exporta las configuraciones para Storybook
+
 export default {
   title: "components/SkillCard",
   component: SkillCard,
