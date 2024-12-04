@@ -33,7 +33,6 @@ const ProjectContent = () => {
         <MarkdownContent content={project?.fields.content} />
         <h2 className="mb-4 mt-6 text-2xl font-bold">Imágenes del proyecto</h2>
         <div className="mx-auto mb-4 space-y-4">
-          {/* Primera imagen destacada, ocupando todo el ancho */}
           {project?.fields.gallery[0] && (
             <img
               className="h-auto w-full rounded-lg object-cover"
@@ -42,7 +41,6 @@ const ProjectContent = () => {
             />
           )}
 
-          {/* Imágenes más pequeñas en dos columnas */}
           <div className="grid grid-cols-2 gap-4">
             {project?.fields.gallery
               .slice(1)

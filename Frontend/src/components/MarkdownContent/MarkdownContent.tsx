@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw"; // Importa rehype-raw
+import rehypeRaw from "rehype-raw"; 
 import { CustomCodeBlock } from "../CustomCodeBlock/CustomCodeBlock";
 import { Callout } from "../Callout/Callout";
 import { CustomImage } from "../CustomImage/CustomImage";
-import remarkGfm from "remark-gfm"; // Importa remark-gfm para soportar tablas
+import remarkGfm from "remark-gfm";
+
 
 interface MarkdownContentProps {
   content?: string;
