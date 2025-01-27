@@ -3,19 +3,26 @@ import { useEffect, useState } from 'react';
 import { BlogService } from '../../services/blogService';
 import { BlogHeader } from './BlogHeader';
 import { BlogCard } from './BlogCard';
+import { Post } from '../../interfaces/post';
+import { Pagination } from '../../components/Pagination/Pagination';
+import { Spinner } from '../../components/Spinner/Spinner';
 
 const BlogPage = () => {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredPosts, setFilteredPosts] = useState<any[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage] = useState<number>(3);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setIsLoading(true)
       const data = await BlogService.getBlogPosts();
-      setPosts(data.props.post);
-      setFilteredPosts(data.props.post);
+      setPosts(data);
+      setIsLoading(false); 
     };
 
     fetchPosts();
@@ -33,28 +40,46 @@ const BlogPage = () => {
     fetchCategories();
   }, []);
 
+  const filterBySearchTerm = (posts: Post[], searchTerm: string): Post[] => {
+    return posts.filter((post) =>
+      post.fields.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.fields.summary.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
+  const filterByCategory = (posts: Post[], selectedCategories: string[]): Post[] => {
+    if (selectedCategories.length === 0) {
+      return posts;
+    } else {
+      return posts.filter((post) =>
+        post.fields.tags &&
+        post.fields.tags.some((tag) =>
+          selectedCategories.includes(tag.fields.name)
+        )
+      );
+    }
+  };
+
+  const paginatePosts = (filteredPosts: Post[]) => {
+    const indexOfLastPost = currentPage * itemsPerPage;
+    const indexOfFirstPost = indexOfLastPost - itemsPerPage;
+    return filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  };
+
   useEffect(() => {
-    const results = posts.filter((post) => {
-      const matchesSearch =
-        post.fields.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        post.fields.summary.toLowerCase().includes(searchTerm.toLowerCase());
+    let results = [...posts];
 
-      const matchesCategory =
-        selectedCategories.length === 0 ||
-        selectedCategories.some(
-          (selectedCategory) =>
-            post.fields.tags &&
-            post.fields.tags.some(
-              (tag: { fields: { name: string } }) =>
-                tag.fields.name === selectedCategory,
-            ),
-        );
-
-      return matchesSearch && matchesCategory;
-    });
+    results = filterBySearchTerm(results, searchTerm);
+    results = filterByCategory(results, selectedCategories);
 
     setFilteredPosts(results);
   }, [searchTerm, posts, selectedCategories]);
+
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const totalPages = Math.ceil(filteredPosts.length / itemsPerPage);
 
   return (
     <>
@@ -67,7 +92,17 @@ const BlogPage = () => {
         resultCount={filteredPosts.length}
       />
       <div className="mx-auto p-4">
-        <BlogCard posts={filteredPosts} />
+      {isLoading ? (
+          <Spinner/>
+        ) : (
+          <BlogCard posts={paginatePosts(filteredPosts)} />
+        )}
+       
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </>
   );

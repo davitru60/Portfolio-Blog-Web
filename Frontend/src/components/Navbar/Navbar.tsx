@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
-import { useDarkMode } from "../../context/DarkModeContext";
+import { useDarkMode } from "../../hooks/useDarkMode";
+import Hamburger from "hamburger-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { darkMode, toggleDarkMode } = useDarkMode();
+  const { theme, toggleDarkMode } = useDarkMode();
   const location = useLocation();
 
   const toggleMenu = () => {
@@ -15,7 +16,7 @@ const Navbar = () => {
   const ulStyles = "mt-4 space-y-2";
   let icon;
 
-  if (darkMode) {
+  if (theme == "dark") {
     icon = <FaSun className="h-6 w-6 text-yellow-500" />;
   } else {
     icon = <FaMoon className="h-6 w-6 text-black" />;
@@ -32,7 +33,6 @@ const Navbar = () => {
     // Add event listener for window resize
     window.addEventListener("resize", handleResize);
     return () => {
-      // Cleanup the event listener on unmount
       window.removeEventListener("resize", handleResize);
     };
   }, []);
@@ -52,7 +52,7 @@ const Navbar = () => {
   const menuClasses = `overflow-hidden transition-all duration-500 ease-in-out md:hidden ${isOpen ? " max-h-screen" : "max-h-0"}`;
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-50 bg-white bg-opacity-60 p-4 backdrop-blur-md dark:bg-zinc-900 dark:bg-opacity-60 dark:backdrop-blur-md">
+    <nav className="fixed left-0 right-0 top-0 z-50 bg-white bg-opacity-60 p-4 py-5 backdrop-blur-md dark:bg-black dark:bg-opacity-60 dark:backdrop-blur-md">
       <div className="flex items-center justify-end md:justify-center">
         <div className="hidden space-x-6 md:flex">
           {links.map(({ path, label }) => {
@@ -66,25 +66,8 @@ const Navbar = () => {
           })}
         </div>
         <div className="flex items-center md:hidden">
-          <button
-            className="block text-black focus:outline-none dark:text-white"
-            onClick={toggleMenu}
-          >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          </button>
+          <Hamburger toggle={toggleMenu} toggled={isOpen} size={20}></Hamburger>
+          
           <button
             onClick={toggleDarkMode}
             className="ml-4 text-black focus:outline-none dark:text-white"
@@ -107,7 +90,7 @@ const Navbar = () => {
         <ul
           className={`flex flex-col items-center justify-center ${ulStyles} space-y-4`}
         >
-           {links.map(({ path, label }) => {
+          {links.map(({ path, label }) => {
             const isActive = location.pathname === path;
             const linkClasses = `text-lg text-black transition duration-300 dark:text-white dark:hover:text-gray-400 ${isActive ? "text-blue-500 dark:text-blue-400" : "text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"}`;
             return (
@@ -116,7 +99,6 @@ const Navbar = () => {
               </Link>
             );
           })}
-          
         </ul>
       </div>
     </nav>

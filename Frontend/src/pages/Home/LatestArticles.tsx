@@ -8,9 +8,8 @@ const LatestArticles = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const data = await BlogService.getBlogPosts();
-      const latestThreePosts = data.props.post.slice(0, 3);
-      setPosts(latestThreePosts);
+      const data = await BlogService.getLatestThreePosts()
+      setPosts(data);
     };
 
     fetchPosts();
@@ -18,16 +17,12 @@ const LatestArticles = () => {
 
   return (
     <>
-      <div className="px-6 py-14 md:px-24">
-        <h1 className="bg-gradient-text-1 z-10 mb-3 text-center text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl md:text-6xl lg:text-6xl">
-          Artículos
-        </h1>
-
-        <h2 className="text-center text-xl font-semibold leading-7 text-gray-600 dark:text-gray-400 md:text-2xl">
+      <div className="px-6 md:px-24 border">
+        <h1 className="bg-gradient-text-1 z-10 mt-4 mb-4 text-center text-4xl font-extrabold leading-9 tracking-tight sm:text-4xl lg:text-5xl">
           Últimos artículos
-        </h2>
+        </h1>
       </div>
-      <div className="mx-auto p-4">
+      <div className="mx-auto p-4 border">
         <BlogCard posts={posts} />
       </div>
     </>

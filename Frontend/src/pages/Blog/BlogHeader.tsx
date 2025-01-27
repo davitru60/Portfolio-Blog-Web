@@ -1,5 +1,6 @@
 import { useState } from "react";
 import backgroundImage from "../../assets/header.webp";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 
 interface BlogHeaderProps {
   searchTerm: string;
@@ -35,7 +36,7 @@ const BlogHeader = (blogHeaderProps: BlogHeaderProps) => {
   };
 
   return (
-    <div className="mx-auto flex w-full flex-col items-center px-4 py-10 text-center">
+    <div className="mx-auto flex w-full flex-col items-center px-4 pt-14 md:py-10 text-center">
       <div className="relative flex max-w-3xl flex-col items-center rounded-lg p-8">
         <div
           className="absolute inset-0 rounded-full bg-cover bg-center opacity-25 blur-3xl"
@@ -56,13 +57,12 @@ const BlogHeader = (blogHeaderProps: BlogHeaderProps) => {
       </div>
 
       <div className="mt-5 flex w-full max-w-md flex-col items-center gap-2 space-x-4 md:flex-row md:gap-0">
-        <input
-          type="text"
-          placeholder="Buscar..."
+        <SearchBar
+          type={"text"}
+          placeholder={"Buscar ..."}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full rounded-md border bg-white p-2 text-gray-900 focus:outline-none focus:ring focus:ring-black dark:border-none dark:bg-gray-800 dark:text-white dark:focus:ring-white"
-        />
+        ></SearchBar>
 
         <div className="relative">
           <button

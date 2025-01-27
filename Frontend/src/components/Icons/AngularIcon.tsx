@@ -3,8 +3,7 @@ const AngularIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 242 256"
-    className="text-3xl text-red-600"
-    width="24"
+    width="30"
     height="24"
   >
     <g clipPath="url(#a)">
