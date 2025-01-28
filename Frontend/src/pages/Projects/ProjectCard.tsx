@@ -9,7 +9,7 @@ const ProjectCard = (projectCardProps: ProjectCardProps) => {
         <Link
           to={`/projects/${project.fields.slug}`}
           key={index}
-          className="mx-10 flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-black dark:blog-card-dark"
+          className="mx-5 flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-black dark:blog-card-dark"
         >
           {project.fields.featuredImage && (
             <div className="w-full">

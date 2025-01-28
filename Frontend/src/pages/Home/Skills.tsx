@@ -7,12 +7,12 @@ import { FigmaIcon } from "../../components/Icons/FigmaIcon";
 const Skills = () => {
   return (
     <>
-      <div className="border px-6  md:px-24">
-        <h1 className="bg-gradient-text-1  mt-4 mb-4 text-center text-4xl font-extrabold leading-9 tracking-tight py-2 sm:text-4xl lg:text-5xl">
+      <div className="px-6 md:px-24">
+        <h1 className="bg-gradient-text-1 mt-6 mb-6 text-center text-4xl font-extrabold leading-9 tracking-tight py-2 sm:text-4xl lg:text-5xl">
           Habilidades
         </h1>
       </div>
-      <div className="mx-auto w-10/12 border p-4 md:px-24">
+      <div className="mx-auto w-10/12 p-4 md:px-24">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <SkillCard
             title="Diseño / frontend"

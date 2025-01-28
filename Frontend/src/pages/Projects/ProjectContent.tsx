@@ -15,7 +15,6 @@ const ProjectContent = () => {
       const foundPost = data.props.projects.find(
         (p: Project) => p.fields.slug === slug,
       );
-      console.log(foundPost);
       setProject(foundPost);
     };
 
@@ -23,11 +22,11 @@ const ProjectContent = () => {
   }, [slug]);
 
   return (
-    <div className="mx-auto px-10 py-10 md:py-20">
+    <div className="mx-auto px-2 pt-14 py-10 md:py-20">
       <div className="mx-auto my-4 max-w-4xl p-4">
         <h1 className="b mb-6 text-3xl font-bold">{project?.fields.title}</h1>
         <img
-          className="mx-auto mb-4 h-auto max-h-96 w-1/2 rounded-lg object-cover"
+          className="mx-auto mb-4 h-auto max-h-96 w-2/3 sm:w-1/2 rounded-lg object-cover"
           src={project?.fields.featuredImage.fields.file.url}
         ></img>
         <MarkdownContent content={project?.fields.content} />

@@ -3,13 +3,20 @@ import { BlogCardProps, Post, Tag } from '../../interfaces/post';
 
 const BlogCard = (blogCardProps: BlogCardProps) => {
   const { posts } = blogCardProps;
+
+  const handleClick = (slug: string) => {
+    localStorage.setItem("selectedPostSlug", slug);  
+  }
+
   return (
     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:px-24">
       {posts.map((post: Post, index: number) => (
         <Link
-          to={`/blog/${post.fields.slug}`}
+          to={`/blog/${post.fields.slug}`}  
           key={index}
-          className="mx-10 flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-black dark:blog-card-dark"
+          id={`post-${post.fields.slug}`} 
+          className="mx-5 flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-black dark:blog-card-dark"
+          onClick={() => handleClick(post.fields.slug)}  
         >
           {post.fields.featuredImage && (
             <div className="w-full">

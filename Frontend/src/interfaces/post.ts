@@ -37,5 +37,6 @@ export interface Post {
 }
 
 export interface BlogCardProps {
+  setSelectedPostSlug?:any
   posts: Post[],
 }

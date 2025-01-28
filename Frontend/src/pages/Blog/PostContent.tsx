@@ -34,7 +34,7 @@ const PostContent = () => {
   if (!post) return <div>Cargando...</div>;
 
   return (
-    <div className="mx-auto px-10 py-10 pt-14 md:py-20">
+    <div className="mx-auto px-2 py-10 pt-14 md:py-20">
       <div className="mx-auto my-4 max-w-4xl p-4">
         {/* Breadcrumb */}
         <nav className="text-md mb-6 text-black dark:text-white">
@@ -51,7 +51,7 @@ const PostContent = () => {
         {/* Post Content */}
         <h1 className="b mb-6 text-3xl font-bold">{post.fields.title}</h1>
         <img
-          className="mx-auto mb-4 h-auto max-h-96 w-1/2 rounded-lg object-cover"
+           className="mx-auto mb-4 h-auto max-h-96 w-2/3 sm:w-1/2 rounded-lg object-cover"
           src={post.fields.featuredImage.fields.file.url}
           alt={post.fields.title}
         />

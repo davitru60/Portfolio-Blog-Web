@@ -7,7 +7,7 @@ import { Spinner } from "../../components/Spinner/Spinner";
 
 
 
-const ProjectPage = () => {
+const ProjectsPage = () => {
   const [projects, setProjects] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -36,4 +36,4 @@ const ProjectPage = () => {
   );
 };
 
-export { ProjectPage };
+export { ProjectsPage };

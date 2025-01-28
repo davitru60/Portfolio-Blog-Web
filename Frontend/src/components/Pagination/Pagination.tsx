@@ -1,3 +1,4 @@
+
 interface PaginationProps {
   totalPages: number;
   currentPage: number;
@@ -26,7 +27,7 @@ const Pagination = (paginationProps: PaginationProps) => {
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`rounded-md border border-gray-300 px-4 py-2 transition hover:bg-gray-200 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 ${
+          className={`w-12 h-10 rounded-md border border-gray-300 text-center text-sm transition  dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 ${
             currentPage === page
               ? "bg-blue-500 font-bold text-white dark:bg-blue-400 dark:text-white"
               : "bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300"
@@ -40,14 +41,18 @@ const Pagination = (paginationProps: PaginationProps) => {
   };
 
   return (
-    <div className="mt-4 flex items-center justify-center gap-4 py-4">
+    <div className="mt-4 flex flex-wrap items-center justify-center gap-2 py-4">
       {/* Botón para página anterior */}
       <button
         onClick={handlePrevious}
         disabled={currentPage === 1}
-        className={`rounded-md border border-gray-300 px-4 py-2 ${currentPage === 1 ? "cursor-not-allowed bg-gray-200 dark:bg-gray-600" : "hover:bg-gray-200 dark:hover:bg-gray-600"} dark:border-gray-700`}
+        className={`w-12 h-10 rounded-md border border-gray-300 text-sm ${
+          currentPage === 1
+            ? "cursor-not-allowed bg-gray-200 dark:bg-gray-600"
+            : "hover:bg-gray-200 dark:hover:bg-gray-600"
+        } dark:border-gray-700 text-center`}
       >
-        Anterior
+        {"<"}
       </button>
 
       {/* Renderizado de botones de página */}
@@ -57,9 +62,13 @@ const Pagination = (paginationProps: PaginationProps) => {
       <button
         onClick={handleNext}
         disabled={currentPage === totalPages}
-        className={`rounded-md border border-gray-300 px-4 py-2 ${currentPage === totalPages ? "cursor-not-allowed bg-gray-200 dark:bg-gray-600" : "hover:bg-gray-200 dark:hover:bg-gray-600"} dark:border-gray-700`}
+        className={`w-12 h-10 rounded-md border border-gray-300 text-sm ${
+          currentPage === totalPages
+            ? "cursor-not-allowed bg-gray-200 dark:bg-gray-600"
+            : "hover:bg-gray-200 dark:hover:bg-gray-600"
+        } dark:border-gray-700 text-center`}
       >
-        Siguiente
+        {">"}
       </button>
     </div>
   );
