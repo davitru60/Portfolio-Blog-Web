@@ -1,22 +1,30 @@
-import { Link } from 'react-router-dom';
-import { BlogCardProps, Post, Tag } from '../../interfaces/post';
+import { Link } from "react-router-dom";
+import { BlogCardProps, Post, Tag } from "../../interfaces/post";
+import { useEffect, useRef } from "react";
 
 const BlogCard = (blogCardProps: BlogCardProps) => {
   const { posts } = blogCardProps;
 
-  const handleClick = (slug: string) => {
-    localStorage.setItem("selectedPostSlug", slug);  
-  }
+  // Cambia el tipo de ref a HTMLElement
+  const postRefs = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    if (posts.length > 0 && postRefs.current[0]) {
+      // Realizamos el scroll hacia el primer post utilizando su ref
+      postRefs.current[0]?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }, [posts]);
 
   return (
     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:px-24">
       {posts.map((post: Post, index: number) => (
         <Link
-          to={`/blog/${post.fields.slug}`}  
+          to={`/blog/${post.fields.slug}`}
           key={index}
-          id={`post-${post.fields.slug}`} 
-          className="mx-5 flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-black dark:blog-card-dark"
-          onClick={() => handleClick(post.fields.slug)}  
+          ref={(el) => (postRefs.current[index] = el)} // Asignamos la ref a cada post
+          className="dark:blog-card-dark mx-5 flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-black"
         >
           {post.fields.featuredImage && (
             <div className="w-full">
@@ -40,11 +48,11 @@ const BlogCard = (blogCardProps: BlogCardProps) => {
               ))}
             </div>
             <p className="mb-4 text-xs font-semibold text-gray-900 transition-colors dark:text-gray-300">
-              {post.fields.author.fields.name} -{' '}
-              {new Date(post.fields.publishDate).toLocaleDateString('es-ES', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
+              {post.fields.author.fields.name} -{" "}
+              {new Date(post.fields.publishDate).toLocaleDateString("es-ES", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
               })}
             </p>
 

@@ -7,7 +7,7 @@ import { BlogCard } from "./BlogCard";
 import { Post } from "../../interfaces/post";
 import { Pagination } from "../../components/Pagination/Pagination";
 import { Spinner } from "../../components/Spinner/Spinner";
-import { scroller } from "react-scroll"; 
+
 
 const BlogPage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -22,8 +22,11 @@ const BlogPage = () => {
   const location = useLocation();
   const navigate = useNavigate(); 
 
+
   // Para obtener el número de página desde la URL
   const currentPage = new URLSearchParams(location.search).get('page') || "1";
+
+  
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -79,7 +82,6 @@ const BlogPage = () => {
     return filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   };
 
-  // Efecto que se dispara al aplicar filtros o realizar una búsqueda
   useEffect(() => {
     let results = [...posts];
   
@@ -100,28 +102,13 @@ const BlogPage = () => {
     }
   }, [searchTerm, posts, selectedCategories, currentPage, itemsPerPage, navigate]);
 
-  // Efecto para hacer scroll al post cuando se navega directamente a la URL del post
-  useEffect(() => {
-    const storedSlug = localStorage.getItem("selectedPostSlug");
 
-    if (storedSlug) {
-      setTimeout(() => {
-        scroller.scrollTo(`post-${storedSlug}`, {
-          duration: 1000, 
-          smooth: 'easeInOutQuart',
-        });
-        localStorage.removeItem("selectedPostSlug"); 
-      }, 100);
-    }
-  }, [location]);
 
-  // Función para manejar el cambio de página
   const handlePageChange = (pageNumber: number) => {
     // Actualizamos la URL con el nuevo número de página
     navigate(`?page=${pageNumber}`);
   };
 
-  // Total de páginas basadas en los posts filtrados
   const totalPages = Math.ceil(filteredPosts.length / itemsPerPage);
 
   return (

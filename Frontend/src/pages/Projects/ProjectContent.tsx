@@ -24,34 +24,28 @@ const ProjectContent = () => {
   return (
     <div className="mx-auto px-2 pt-14 py-10 md:py-20">
       <div className="mx-auto my-4 max-w-4xl p-4">
-        <h1 className="b mb-6 text-3xl font-bold">{project?.fields.title}</h1>
-        <img
-          className="mx-auto mb-4 h-auto max-h-96 w-2/3 sm:w-1/2 rounded-lg object-cover"
-          src={project?.fields.featuredImage.fields.file.url}
-        ></img>
-        <MarkdownContent content={project?.fields.content} />
-        <h2 className="mb-4 mt-6 text-2xl font-bold">Imágenes del proyecto</h2>
-        <div className="mx-auto mb-4 space-y-4">
-          {project?.fields.gallery[0] && (
-            <img
-              className="h-auto w-full rounded-lg object-cover"
-              src={project.fields.gallery[0].fields.file.url}
-              alt={project.fields.gallery[0].fields.title || "Primera imagen"}
-            />
-          )}
+        <h1 className="mb-6 text-3xl font-bold">{project?.fields.title}</h1>
 
-          <div className="grid grid-cols-2 gap-4">
-            {project?.fields.gallery
-              .slice(1)
-              .map((img: any, index: number) => (
-                <img
-                  key={index}
-                  className="h-32 w-full rounded-lg object-cover sm:h-40 md:h-48"
-                  src={img.fields.file.url}
-                  alt={img.fields.title || `Imagen ${index + 2}`}
-                />
-              ))}
-          </div>
+        {/* Imagen destacada */}
+        <img
+          className="mx-auto mb-4 h-auto max-h-96 w-96 sm:w-2/3 rounded-lg object-cover"
+          src={project?.fields.featuredImage.fields.file.url}
+          alt={project?.fields.title || "Imagen destacada"}
+        />
+
+        <MarkdownContent content={project?.fields.content} />
+
+        {/* Galería de imágenes */}
+        <h2 className="mb-4 mt-6 text-2xl font-bold">Imágenes del proyecto</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {project?.fields.gallery.map((img: any, index: number) => (
+            <img
+              key={index}
+              className="h-60 w-full rounded-lg object-cover"
+              src={img.fields.file.url}
+              alt={img.fields.title || `Imagen ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </div>

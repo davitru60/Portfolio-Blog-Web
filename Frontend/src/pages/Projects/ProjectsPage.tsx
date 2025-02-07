@@ -10,11 +10,13 @@ import { Spinner } from "../../components/Spinner/Spinner";
 const ProjectsPage = () => {
   const [projects, setProjects] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  
 
   useEffect(() => {
     const fetchProjects = async () => {
       setIsLoading(true);
       const data = await ProjectService.getProjects();
+      console.log(data)
       setProjects(data.props.projects);
       setIsLoading(false); 
     };

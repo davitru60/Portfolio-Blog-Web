@@ -14,18 +14,20 @@ const PostContent = () => {
     const fetchPost = async () => {
       setIsLoading(true);
       const data = await BlogService.getBlogPosts();
-      const foundPost = data.find((p: any) => p.fields.slug === slug); // Busca el post por slug
+      const foundPost = data.find((p: any) => p.fields.slug === slug);
+      
+    
       setPost(foundPost);
       setIsLoading(false);
     };
 
     fetchPost();
-  }, [slug]);
+  }, [slug]); 
 
   // Spinner a nivel de página completa
   if (isLoading) {
     return (
-      <div className="fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center bg-white dark:bg-black">
+      <div className="fixed left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-white dark:bg-black">
         <Spinner />
       </div>
     );
@@ -51,7 +53,7 @@ const PostContent = () => {
         {/* Post Content */}
         <h1 className="b mb-6 text-3xl font-bold">{post.fields.title}</h1>
         <img
-           className="mx-auto mb-4 h-auto max-h-96 w-2/3 sm:w-1/2 rounded-lg object-cover"
+          className="mx-auto mb-4 h-auto max-h-96 w-2/3 rounded-lg object-cover sm:w-1/2"
           src={post.fields.featuredImage.fields.file.url}
           alt={post.fields.title}
         />

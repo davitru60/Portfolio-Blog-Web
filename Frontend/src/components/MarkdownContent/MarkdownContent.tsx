@@ -14,51 +14,38 @@ interface MarkdownContentProps {
 const MarkdownContent = (markdownContentProps: MarkdownContentProps) => {
   const { content } = markdownContentProps;
   const modifiedContent = content?.replace(
-    /:::(info|warning|error)\s*([^:\n]+)?\s*([\s\S]*?):::/g,
+    /:::(\w+)\s*([^:\n]+)?\s*([\s\S]*?):::/g,
     (_match, type, title, body) => {
-      // `type`: el tipo de callout (info, warning, error)
-      // `title`: el título (puede estar vacío)
-      // `body`: el contenido del callout
-      return `<div class="callout type-${type}" data-title="${title?.trim() ?? ""}">${body.trim()}</div>`;
+      return `<div class="custom-block type-${type}" data-title="${title?.trim() ?? ""}">${body.trim()}</div>`;
     },
   );
 
-  // Renderizadores personalizados para Markdown
+ 
   const customRenderers = {
     h1: (props: any) => <h1 className="mb-4 text-3xl font-bold" {...props} />,
     h2: (props: any) => (
       <h2 className="mb-4 mt-6 text-2xl font-bold" {...props} />
     ),
-    h3: (props: any) => <h3 className="mb-2 text-2xl font-medium" {...props} />,
+    h3: (props: any) => <h3 className="mb-2 text-xl font-medium mt-5" {...props} />,
     p: (props: any) => (
       <p className="text-md mb-4 text-gray-700 dark:text-gray-300" {...props} />
     ),
     code: (props: any) => <CustomCodeBlock {...props} />,
     img: (props: any) => <CustomImage {...props} />,
+    ul: (props: any) => <ul className="mb-4 list-disc pl-6 text-gray-700 dark:text-gray-300" {...props} />,
+    ol: (props: any) => <ol className="text-md mb-4 list-decimal pl-6 text-gray-700 dark:text-gray-300" {...props} />,
+    li: (props: any) => <li className="text-md mb-2">{props.children}</li>,
     div: (props: any) => {
-      const match =
-        props.className && /type-(info|warning|error)/.exec(props.className);
+      const match = props.className && /type-(\w+)/.exec(props.className);
       if (match) {
-        const title = props["data-title"]; // Extraer título desde data-title
-        return <Callout title={title}>{props.children}</Callout>;
+        const blockType = match[1];
+        const title = props["data-title"];
+        return <Callout type={blockType} title={title}>{props.children}</Callout>;
       }
       return <div {...props} />;
     },
-    ul: (props: any) => (
-      <ul
-        className="mb-4 list-disc pl-6 text-gray-700 dark:text-gray-300"
-        {...props}
-      />
-    ),
-    ol: (props: any) => (
-      <ol
-        className="text-md mb-4 list-decimal pl-6 text-gray-700 dark:text-gray-300"
-        {...props}
-      />
-    ),
-    li: (props: any) => <li className="text-md mb-2">{props.children}</li>,
-
-    // Renderizado de tablas para Markdown
+  
+  
     table: (props: any) => (
       <table
         className="mb-4 w-full table-auto text-left text-gray-700 dark:text-gray-300"
@@ -79,6 +66,8 @@ const MarkdownContent = (markdownContentProps: MarkdownContentProps) => {
     ),
 
     td: (props: any) => <td className="px-4 py-2">{props.children}</td>,
+
+    
   };
 
   return (
@@ -86,7 +75,7 @@ const MarkdownContent = (markdownContentProps: MarkdownContentProps) => {
       children={modifiedContent}
       components={customRenderers}
       rehypePlugins={[rehypeRaw]}
-      remarkPlugins={[remarkGfm]} // Añade remark-gfm aquí
+      remarkPlugins={[remarkGfm]} 
     />
   );
 };
