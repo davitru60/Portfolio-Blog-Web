@@ -13,6 +13,9 @@ class HashnodeBlogService {
             posts(first: 10) {
               edges {
                 node {
+                  author {
+                    name
+                  }
                   title
                   slug
                   brief
@@ -59,6 +62,50 @@ class HashnodeBlogService {
     });
 
     return data.publication.post;
+  };
+
+  static getPostIdBySlug = async (slug: string) => {
+    const { data } = await client.query({
+      query: gql`
+        query GetPostId($host: String!, $slug: String!) {
+          publication(host: $host) {
+            post(slug: $slug) {
+              id
+            }
+          }
+        }
+      `,
+      variables: {
+        host: HASHNODE_HOST,
+        slug,
+      },
+    });
+
+    return data.publication.post.id;
+  };
+
+  static likePost = async (postId: string) => {
+    const { data } = await client.mutate({
+      mutation: gql`
+        mutation LikePost($input: LikePostInput!) {
+          likePost(input: $input) {
+            post {
+              id
+              title
+              reactionCount
+              likedBy {
+                totalCount
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        input: { postId },
+      },
+    });
+
+    return data.likePost.post;
   };
 }
 

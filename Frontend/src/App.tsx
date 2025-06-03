@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { Route, Routes, ScrollRestoration, useLocation } from "react-router-dom";
 import "./App.css";
 import { AboutPage } from "./pages/About/AboutPage";
-import { BlogPage } from "./pages/Blog/BlogContentful/BlogPage";
-import { PostContent } from "./pages/Blog/BlogContentful/PostContent";
+import { BlogList } from "./pages/Blog/BlogHashnode/BlogList";
+import { HashnodePostContent } from "./pages/Blog/BlogHashnode/HashnodePostContent";
 import { HomePage } from "./pages/Home/HomePage";
 import { ProjectContent } from "./pages/Projects/ProjectContent";
 import { ProjectsPage } from "./pages/Projects/ProjectsPage";
@@ -37,8 +37,8 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:slug" element={<ProjectContent />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:slug" element={<PostContent />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<HashnodePostContent />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
         <ScrollRestoration />

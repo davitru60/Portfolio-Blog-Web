@@ -43,12 +43,21 @@ export interface BlogCardProps {
 
 //Hashnode
 export interface HashnodePost {
-  title: string,
-  slug: string,
-  brief: string,
-  coverImage: string,
-  dateAdded: string,
-  dateUpdated: string
+  author:{
+    name: string;
+  }
+  title: string;
+  publishedAt: string;
+  slug: string;
+  brief: string;
+  coverImage: {
+    url: string;
+  }
+  dateAdded: string;
+  dateUpdated: string;
+  content: {
+    markdown: string;
+  };
 }
 
 export interface HashnodeBlogCardProps {
