@@ -40,3 +40,18 @@ export interface BlogCardProps {
   setSelectedPostSlug?:any
   posts: Post[],
 }
+
+//Hashnode
+export interface HashnodePost {
+  title: string,
+  slug: string,
+  brief: string,
+  coverImage: string,
+  dateAdded: string,
+  dateUpdated: string
+}
+
+export interface HashnodeBlogCardProps {
+  posts: HashnodePost[],
+  setSelectedPostSlug?: any
+}

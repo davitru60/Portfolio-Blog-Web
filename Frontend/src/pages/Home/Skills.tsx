@@ -1,8 +1,8 @@
 import { FaBootstrap, FaLaravel, FaNodeJs, FaReact } from "react-icons/fa";
-import { SkillCard } from "../../components/Card/SkillCard";
+import { SkillCard } from "../../shared/components/ui/Card/SkillCard";
 import { SiTailwindcss } from "react-icons/si";
-import { AngularIcon } from "../../components/Icons/AngularIcon";
-import { FigmaIcon } from "../../components/Icons/FigmaIcon";
+import { AngularIcon } from "../../shared/components/icons/AngularIcon";
+import { FigmaIcon } from "../../shared/components/icons/FigmaIcon";
 
 const Skills = () => {
   return (

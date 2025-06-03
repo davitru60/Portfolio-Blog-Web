@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { BlogService } from "../../services/blogService";
-import { MarkdownContent } from "../../components/MarkdownContent/MarkdownContent";
-import { Spinner } from "../../components/Spinner/Spinner";
+import { BlogService } from "../../../services/contentful/blogService";
+import { MarkdownContent } from "../../../shared/components/ui/MarkdownContent/MarkdownContent";
+import { Spinner } from "../../../shared/components/ui/Spinner/Spinner";
 
 const PostContent = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -15,14 +15,16 @@ const PostContent = () => {
       setIsLoading(true);
       const data = await BlogService.getBlogPosts();
       const foundPost = data.find((p: any) => p.fields.slug === slug);
-      
-    
+
       setPost(foundPost);
       setIsLoading(false);
     };
 
     fetchPost();
-  }, [slug]); 
+  }, [slug]);
+
+  
+
 
   // Spinner a nivel de página completa
   if (isLoading) {

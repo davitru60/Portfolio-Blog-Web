@@ -17,9 +17,7 @@ const AboutPage = () => {
         <h1 className="bg-gradient-text-1 mb-3 text-3xl font-extrabold leading-9 tracking-tight sm:leading-10 md:text-7xl md:leading-normal">
           Sobre mí
         </h1>
-        <h2 className="text-xl font-semibold leading-7 text-gray-600 dark:text-gray-400 md:text-2xl">
-          Explora mis pensamientos y experiencias
-        </h2>
+       
       </div>
 
       <section className="m-5 mt-10 grid max-w-5xl grid-cols-1 items-start gap-8 md:grid-cols-3 md:gap-12 lg:gap-16">

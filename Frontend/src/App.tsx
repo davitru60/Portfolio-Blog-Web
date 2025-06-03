@@ -1,14 +1,14 @@
-import { Route, Routes, ScrollRestoration, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { Route, Routes, ScrollRestoration, useLocation } from "react-router-dom";
 import "./App.css";
-import { Navbar } from "./components/Navbar/Navbar";
-import { HomePage } from "./pages/Home/HomePage";
-import { BlogPage } from "./pages/Blog/BlogPage";
-import { PostContent } from "./pages/Blog/PostContent";
 import { AboutPage } from "./pages/About/AboutPage";
-import { ProjectsPage } from "./pages/Projects/ProjectsPage";
+import { BlogList } from "./pages/Blog/BlogHashnode/BlogList";
+import { PostContent } from "./pages/Blog/BlogContentful/PostContent";
+import { HomePage } from "./pages/Home/HomePage";
 import { ProjectContent } from "./pages/Projects/ProjectContent";
-import { Footer } from "./components/Footer/Footer";
+import { ProjectsPage } from "./pages/Projects/ProjectsPage";
+import { Footer } from "./shared/components/layout/Footer/Footer";
+import { Navbar } from "./shared/components/ui/Navbar/Navbar";
 
 
 const usePageTitle = () => {
@@ -37,7 +37,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:slug" element={<ProjectContent />} />
-          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:slug" element={<PostContent />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>

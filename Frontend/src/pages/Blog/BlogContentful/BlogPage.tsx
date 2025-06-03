@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom"; 
-import { BlogService } from "../../services/blogService";
+import { BlogService } from "../../../services/contentful/blogService";
 import { BlogHeader } from "./BlogHeader";
 import { BlogCard } from "./BlogCard";
-import { Post } from "../../interfaces/post";
-import { Pagination } from "../../components/Pagination/Pagination";
-import { Spinner } from "../../components/Spinner/Spinner";
+import { Post } from "../../../interfaces/post";
+import { Pagination } from "../../../shared/components/ui/Pagination/Pagination";
+import { Spinner } from "../../../shared/components/ui/Spinner/Spinner";
+import useScrollPosition from "../../../hooks/useScrollPosition";
 
 
 const BlogPage = () => {
@@ -22,11 +23,10 @@ const BlogPage = () => {
   const location = useLocation();
   const navigate = useNavigate(); 
 
-
   // Para obtener el número de página desde la URL
   const currentPage = new URLSearchParams(location.search).get('page') || "1";
 
-  
+  useScrollPosition(currentPage);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -82,6 +82,7 @@ const BlogPage = () => {
     return filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   };
 
+  // Efecto que se dispara al aplicar filtros o realizar una búsqueda
   useEffect(() => {
     let results = [...posts];
   
@@ -104,11 +105,13 @@ const BlogPage = () => {
 
 
 
+  // Función para manejar el cambio de página
   const handlePageChange = (pageNumber: number) => {
     // Actualizamos la URL con el nuevo número de página
     navigate(`?page=${pageNumber}`);
   };
 
+  // Total de páginas basadas en los posts filtrados
   const totalPages = Math.ceil(filteredPosts.length / itemsPerPage);
 
   return (

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import backgroundImage from "../../assets/header.webp";
-import { SearchBar } from "../../components/SearchBar/SearchBar";
+import { SearchBar } from "../../../shared/components/ui/SearchBar/SearchBar";
+
+
 
 interface BlogHeaderProps {
   searchTerm: string;

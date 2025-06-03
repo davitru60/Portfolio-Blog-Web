@@ -5,7 +5,7 @@ import { SkillCard } from "./SkillCard";
 import { FaReact } from "react-icons/fa";
 import { SiFigma, SiTailwindcss } from "react-icons/si";
 import { FaBootstrap } from "react-icons/fa";
-import { AngularIcon } from "../Icons/AngularIcon";
+import { AngularIcon } from "../../icons/AngularIcon";
 import "../../index.css";
 
 

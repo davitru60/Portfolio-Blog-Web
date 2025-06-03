@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { ProjectService } from "../../services/projectService";
+import { ProjectService } from "../../services/contentful/projectService";
 import { ProjectCard } from "../Projects/ProjectCard";
 
 const Projects = () => {

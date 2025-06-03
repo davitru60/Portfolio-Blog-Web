@@ -1,4 +1,4 @@
-import { Button } from "../../components/Button/Button";
+import { Button } from "../../shared/components/ui/Button/Button";
 import { Link } from "react-scroll"; // Importa Link de react-scroll
 import backgroundImage from "../../assets/header.webp";
 

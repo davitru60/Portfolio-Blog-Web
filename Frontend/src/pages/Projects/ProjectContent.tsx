@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ProjectService } from "../../services/projectService";
-import { MarkdownContent } from "../../components/MarkdownContent/MarkdownContent";
+import { ProjectService } from "../../services/contentful/projectService";
+import { MarkdownContent } from "../../shared/components/ui/MarkdownContent/MarkdownContent";
 import { Project } from "../../interfaces/project";
 
 const ProjectContent = () => {

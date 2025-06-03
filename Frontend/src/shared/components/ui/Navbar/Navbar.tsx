@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
-import { useDarkMode } from "../../hooks/useDarkMode";
+import { useDarkMode } from "../../../../hooks/useDarkMode";
 import Hamburger from "hamburger-react";
 
 const Navbar = () => {

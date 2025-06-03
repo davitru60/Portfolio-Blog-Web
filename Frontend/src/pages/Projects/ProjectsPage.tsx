@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { ProjectHeader } from "./ProjectHeader";
-import { ProjectService } from "../../services/projectService";
+import { ProjectService } from "../../services/contentful/projectService";
 import { ProjectCard } from "./ProjectCard";
-import { Spinner } from "../../components/Spinner/Spinner";
+import { Spinner } from "../../shared/components/ui/Spinner/Spinner";
 
 
 

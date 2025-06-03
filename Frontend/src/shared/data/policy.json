@@ -1,0 +1,63 @@
+{
+  "politica": [
+    {
+      "titulo": "0. Objeto y aceptación",
+      "parrafos": [
+        "El presente aviso legal regula el uso del sitio web <strong>https://www.davidtrujillo.com</strong> (en adelante, LA WEB), del que es titular <strong> David Trujillo Carrero </strong> <strong> (en adelante, EL PROPIETARIO DE LA WEB).</strong>",
+        "La navegación por el sitio web de <strong> EL PROPIETARIO DE LA WEB</strong> atribuye la condición de usuario del mismo e implica la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en este Aviso Legal, que pueden sufrir modificaciones.",
+        "El usuario se obliga a hacer un uso correcto del sitio web de conformidad con las leyes, la buena fe, el orden público, los usos del tráfico y el presente Aviso Legal.",
+        "El usuario responderá frente a <strong> EL PROPIETARIO DE LA WEB</strong> o frente a terceros, de cualesquiera daños y perjuicios que pudieran causarse como consecuencia del incumplimiento de dicha obligación."
+      ]
+    },
+    {
+      "titulo": "1. Finalidad del tratamiento de los datos",
+      "parrafos": [
+        "Los datos personales recogidos a través de formularios u otros medios del sitio web serán tratados con la finalidad de:"
+      ],
+      "listas": [
+        [
+          "Gestionar las consultas o solicitudes realizadas por los usuarios.",
+          "Prestar los servicios ofrecidos en la web.",
+          "Mantener una comunicación eficiente con los usuarios.",
+          "Garantizar el cumplimiento de obligaciones legales."
+        ]
+      ]
+    },
+    {
+      "titulo": "2. Base legal para el tratamiento",
+      "parrafos": [
+        "La base legal para el tratamiento de los datos es el consentimiento expreso del usuario, que deberá otorgarse de forma libre, específica, informada e inequívoca."
+      ]
+    },
+    {
+      "titulo": "3. Conservación de los datos",
+      "parrafos": [
+        "Los datos personales se conservarán mientras exista una relación con el usuario o hasta que este solicite su supresión, y durante el plazo necesario para cumplir con las obligaciones legales correspondientes."
+      ]
+    },
+    {
+      "titulo": "4. Comunicación de datos a terceros",
+      "parrafos": [
+        "EL PROPIETARIO DE LA WEB no cederá, venderá ni compartirá los datos personales con terceros sin el consentimiento expreso del usuario, salvo obligación legal."
+      ]
+    },
+    {
+      "titulo": "5. Derechos de los usuarios usuario",
+      "parrafos": [
+        "El usuario tiene derecho a:"
+      ],
+      "listas": [
+        [
+          "Acceder a sus datos personales.",
+          "Solicitar la rectificación de datos inexactos.",
+          "Solicitar su supresión cuando los datos ya no sean necesarios.",
+          "Oponerse o limitar el tratamiento de sus datos.",
+          "Solicitar la portabilidad de los mismos."
+        ]
+      ],
+      "parrafosFinales": [
+        "El ejercicio de estos derechos puede realizarse mediante solicitud escrita dirigida a <strong> davitru60@gmail.com </strong>, identificándose debidamente e indicando claramente el derecho que se desea ejercer."
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
-import { BlogService } from '../../services/blogService';
-import { BlogCard } from '../Blog/BlogCard';
+import { BlogService } from '../../services/contentful/blogService';
+import { HomeArticleCard } from './HomeArticleCard';
 
 const LatestArticles = () => {
   const [posts, setPosts] = useState<any[]>([]);
@@ -23,7 +23,7 @@ const LatestArticles = () => {
         </h1>
       </div>
       <div className="mx-auto p-4">
-        <BlogCard posts={posts} />
+        <HomeArticleCard posts={posts} />
       </div>
     </>
   );
