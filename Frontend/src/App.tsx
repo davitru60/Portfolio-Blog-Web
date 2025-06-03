@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Route, Routes, ScrollRestoration, useLocation } from "react-router-dom";
 import "./App.css";
 import { AboutPage } from "./pages/About/AboutPage";
-import { BlogList } from "./pages/Blog/BlogHashnode/BlogList";
+import { BlogPage } from "./pages/Blog/BlogContentful/BlogPage";
 import { PostContent } from "./pages/Blog/BlogContentful/PostContent";
 import { HomePage } from "./pages/Home/HomePage";
 import { ProjectContent } from "./pages/Projects/ProjectContent";
@@ -37,7 +37,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:slug" element={<ProjectContent />} />
-          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<PostContent />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
