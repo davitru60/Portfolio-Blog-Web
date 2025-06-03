@@ -32,6 +32,7 @@ class HashnodeBlogService {
       variables: {
         host: HASHNODE_HOST,
       },
+      fetchPolicy: "no-cache", // Ensure we always fetch fresh data
     });
 
     return data.publication.posts.edges.map((edge: any) => edge.node);

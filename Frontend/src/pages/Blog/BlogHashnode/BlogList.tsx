@@ -1,4 +1,3 @@
-// src/components/BlogList.tsx
 import { useEffect, useState } from "react";
 import { HashnodeBlogService } from "../../../services/hashnode/hashnodeBlogService";
 import { HashnodeBlogCard } from "./HashnodeCard";
