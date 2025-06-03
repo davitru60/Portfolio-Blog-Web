@@ -1,5 +1,5 @@
 import { useState } from "react";
-import backgroundImage from "../../assets/header.webp";
+import backgroundImage from "../../../assets/header.webp";
 import { SearchBar } from "../../../shared/components/ui/SearchBar/SearchBar";
 
 
