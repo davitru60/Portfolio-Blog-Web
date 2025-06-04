@@ -1,6 +1,13 @@
 import backgroundImage from "../../../assets/header.webp";
+import { SearchBar } from "../../../shared/components/ui/SearchBar/SearchBar";
 
-const HashNodeHeader = () =>{
+interface HashnodeHeaderProps {
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+}
+
+const HashnodeHeader = (hashnodeHeaderProps:HashnodeHeaderProps) =>{
+  const { searchTerm,setSearchTerm } = hashnodeHeaderProps;
 
     return(
     <div className="mx-auto flex w-full flex-col items-center px-4 pt-14 md:py-10 text-center">
@@ -22,8 +29,16 @@ const HashNodeHeader = () =>{
           Artículos detallados sobre tecnología
         </h2>
       </div>
+       <div className="mt-5 flex w-full max-w-md flex-col items-center gap-2 space-x-4 md:flex-row md:gap-0">
+        <SearchBar
+          type={"text"}
+          placeholder={"Buscar ..."}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        ></SearchBar>   
+      </div>
     </div>
   );
 }
 
-export { HashNodeHeader };
+export { HashnodeHeader };

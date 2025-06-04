@@ -9,6 +9,7 @@ import useScrollPosition from '../../hooks/useScrollPosition';
 
 const HomePage = () => {
   // Llamar al hook para mantener la posición del scroll en la página
+  
   useScrollPosition('home'); // Pasar un identificador único para esta página
 
   useEffect(() => {

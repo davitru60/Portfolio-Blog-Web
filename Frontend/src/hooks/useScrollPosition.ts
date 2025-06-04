@@ -1,3 +1,5 @@
+// src/hooks/useScrollPosition.ts
+
 import { useEffect } from "react";
 
 interface ScrollPositions {
@@ -6,14 +8,15 @@ interface ScrollPositions {
 
 const scrollPositions: ScrollPositions = {};
 
-const useScrollPosition = (page: string): void => {
+const useScrollPosition = (page: string, isReady?: boolean): void => {
   useEffect(() => {
-    const pageScrollPosition = scrollPositions[page];
+    if (!isReady) return;
 
+    const pageScrollPosition = scrollPositions[page];
     if (pageScrollPosition !== undefined) {
       setTimeout(() => {
         window.scrollTo(0, pageScrollPosition);
-      }, 50);
+      }, 0);
     }
 
     const save = () => {
@@ -21,11 +24,10 @@ const useScrollPosition = (page: string): void => {
     };
 
     window.addEventListener("scroll", save);
-
     return () => {
       window.removeEventListener("scroll", save);
     };
-  }, [page]);
+  }, [page, isReady]);
 };
 
 export default useScrollPosition;

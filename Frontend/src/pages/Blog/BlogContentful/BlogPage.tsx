@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom"; 
+import { useLocation, useNavigate } from "react-router-dom";
 import { BlogService } from "../../../services/contentful/blogService";
 import { BlogHeader } from "./BlogHeader";
 import { BlogCard } from "./BlogCard";
@@ -8,7 +8,6 @@ import { Post } from "../../../interfaces/post";
 import { Pagination } from "../../../shared/components/ui/Pagination/Pagination";
 import { Spinner } from "../../../shared/components/ui/Spinner/Spinner";
 import useScrollPosition from "../../../hooks/useScrollPosition";
-
 
 const BlogPage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -21,12 +20,13 @@ const BlogPage = () => {
   const [itemsPerPage] = useState<number>(3);
 
   const location = useLocation();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   // Para obtener el número de página desde la URL
-  const currentPage = new URLSearchParams(location.search).get('page') || "1";
+  const currentPage = new URLSearchParams(location.search).get("page") || "1";
 
-  useScrollPosition(currentPage);
+  const isReady = posts.length > 0;
+  useScrollPosition(currentPage, isReady);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -55,13 +55,13 @@ const BlogPage = () => {
     return posts.filter(
       (post) =>
         post.fields.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        post.fields.summary.toLowerCase().includes(searchTerm.toLowerCase())
+        post.fields.summary.toLowerCase().includes(searchTerm.toLowerCase()),
     );
   };
 
   const filterByCategory = (
     posts: Post[],
-    selectedCategories: string[]
+    selectedCategories: string[],
   ): Post[] => {
     if (selectedCategories.length === 0) {
       return posts;
@@ -70,8 +70,8 @@ const BlogPage = () => {
         (post) =>
           post.fields.tags &&
           post.fields.tags.some((tag) =>
-            selectedCategories.includes(tag.fields.name)
-          )
+            selectedCategories.includes(tag.fields.name),
+          ),
       );
     }
   };
@@ -85,15 +85,15 @@ const BlogPage = () => {
   // Efecto que se dispara al aplicar filtros o realizar una búsqueda
   useEffect(() => {
     let results = [...posts];
-  
+
     // Filtro por término de búsqueda
     results = filterBySearchTerm(results, searchTerm);
-  
+
     // Filtro por categorías seleccionadas
     results = filterByCategory(results, selectedCategories);
-  
+
     setFilteredPosts(results);
-  
+
     const totalPages = Math.ceil(results.length / itemsPerPage);
     const currentPageNumber = parseInt(currentPage);
 
@@ -101,9 +101,14 @@ const BlogPage = () => {
     if (currentPageNumber > totalPages && totalPages > 0) {
       navigate("?page=1");
     }
-  }, [searchTerm, posts, selectedCategories, currentPage, itemsPerPage, navigate]);
-
-
+  }, [
+    searchTerm,
+    posts,
+    selectedCategories,
+    currentPage,
+    itemsPerPage,
+    navigate,
+  ]);
 
   // Función para manejar el cambio de página
   const handlePageChange = (pageNumber: number) => {
@@ -130,7 +135,6 @@ const BlogPage = () => {
         ) : (
           <BlogCard posts={paginatePosts(filteredPosts)} />
         )}
-  
 
         <Pagination
           totalPages={totalPages}

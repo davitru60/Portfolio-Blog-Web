@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { HashnodeBlogCardProps } from "../../../interfaces/post";
 
 const HashnodeBlogCard = (posts: HashnodeBlogCardProps) => {
+
+  
   return (
     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:px-24">
       {posts.posts.map((post, index) => (

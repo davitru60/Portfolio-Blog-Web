@@ -3,13 +3,7 @@ import { BlogCardProps, Post, Tag } from '../../../interfaces/post';
 
 const BlogCard = ({ posts }: BlogCardProps) => {
   // Guardamos la posición del scroll cuando el usuario hace clic en un post
-  const handleClick = () => {
-    // Guardamos la posición del scroll en history.state
-    window.history.replaceState(
-      { scrollPosition: window.scrollY },
-      document.title
-    );
-  };
+ 
 
   return (
     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:px-24">
@@ -19,7 +13,7 @@ const BlogCard = ({ posts }: BlogCardProps) => {
           key={index}
           id={`post-${post.fields.slug}`}
           className="mx-5 flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-black dark:blog-card-dark"
-          onClick={handleClick} // Guardamos la posición del scroll al hacer clic
+
         >
           {post.fields.featuredImage && (
             <div className="w-full">

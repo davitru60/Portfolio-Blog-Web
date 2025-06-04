@@ -1,14 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
-import { BlogService } from '../../services/contentful/blogService';
-import { HomeArticleCard } from './HomeArticleCard';
+import { HashnodePostNode } from '../../interfaces/post';
+import { HashnodeBlogService } from '../../services/hashnode/hashnodeBlogService';
+import { HashnodeBlogCard } from '../Blog/BlogHashnode/HashnodeCard';
 
 const LatestArticles = () => {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<HashnodePostNode[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const data = await BlogService.getLatestThreePosts()
+      const data = await HashnodeBlogService.getLatestThreePosts()
       setPosts(data);
     };
 
@@ -23,7 +23,7 @@ const LatestArticles = () => {
         </h1>
       </div>
       <div className="mx-auto p-4">
-        <HomeArticleCard posts={posts} />
+        <HashnodeBlogCard posts={posts} />
       </div>
     </>
   );

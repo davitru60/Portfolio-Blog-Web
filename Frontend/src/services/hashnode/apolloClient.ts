@@ -1,9 +1,20 @@
-// src/apolloClient.ts
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "https://gql.hashnode.com",
+  link: new HttpLink({
+    uri: "https://gql.hashnode.com",
+  }),
   cache: new InMemoryCache(),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: "no-cache",   // para queries reactivas (useQuery)
+      errorPolicy: "ignore",
+    },
+    query: {
+      fetchPolicy: "no-cache",   // para queries simples
+      errorPolicy: "all",
+    },
+  },
 });
 
 export default client;

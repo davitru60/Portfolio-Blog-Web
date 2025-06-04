@@ -1,5 +1,5 @@
 import { Button } from "../../shared/components/ui/Button/Button";
-import { Link } from "react-scroll"; // Importa Link de react-scroll
+import { Link } from "react-scroll";
 import backgroundImage from "../../assets/header.webp";
 
 const HomeHero = () => {
@@ -31,7 +31,7 @@ const HomeHero = () => {
 
         <div className="flex flex-col gap-4 sm:flex sm:flex-row sm:space-x-4">
           <Link
-            to="contact-section" // Aquí va el id de la sección de contacto
+            to="contact-section" 
             smooth={true}
             duration={500}
             className="contact"

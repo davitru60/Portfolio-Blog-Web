@@ -9,7 +9,7 @@ const Contact = () => {
 
       <a
         href="mailto:davitru60@gmail.com"
-        className="mb-6 inline-flex items-center rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition duration-300 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+        className="mb-6 inline-flex items-center rounded-lg bg-black px-6 py-3 font-semibold text-white transition duration-300 dark:bg-white dark:text-black"
       >
         <FaEnvelope className="mr-2" />
         Enviar un correo

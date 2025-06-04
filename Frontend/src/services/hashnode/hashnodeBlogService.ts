@@ -1,113 +1,184 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { gql } from "@apollo/client";
-import client from "./apolloClient";
+import { GraphQLClient } from "graphql-request";
+import {
+  HashnodeAllPostsResponse,
+  PostData
+} from "../../interfaces/post";
 
 const HASHNODE_HOST = "davitru60.hashnode.dev";
 
+export const getClient = () => {
+  return new GraphQLClient("https://gql.hashnode.com");
+};
+
 class HashnodeBlogService {
-  static getBlogPosts = async () => {
-    const { data } = await client.query({
-      query: gql`
-        query GetPosts($host: String!) {
-          publication(host: $host) {
-            posts(first: 10) {
-              edges {
-                node {
-                  author {
-                    name
-                  }
-                  title
+  static getBlogPosts = async (afterCursor?: string) => {
+  const client = getClient();
+
+  const query = gql`
+    query allPosts($after: String) {
+      publication(host: "${HASHNODE_HOST}") {
+        id
+        title
+        posts(first: 3, after: $after) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          edges {
+            node {
+              id
+              author {
+                name
+                profilePicture
+              }
+              title
+              subtitle
+              brief
+              slug
+              canonicalUrl
+              coverImage {
+                url
+              }
+              tags {
+                name
+                slug
+              }
+              series {
+                name
+                slug
+              }
+              publishedAt
+              updatedAt
+              readTimeInMinutes
+              content {
+                html
+              }
+              seo {
+                description
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const variables = afterCursor ? { after: afterCursor } : {};
+
+  const allPosts = await client.request<HashnodeAllPostsResponse>(query, variables);
+
+  return allPosts;
+};
+
+  static getLatestThreePosts = async () => {
+    const client = getClient();
+
+    const query = gql`
+      query latestPosts {
+        publication(host: "${HASHNODE_HOST}") {
+          id
+          posts(first: 3) {
+            edges {
+              node {
+                id
+                author {
+                  name
+                  profilePicture
+                }
+                title
+                subtitle
+                brief
+                slug
+                canonicalUrl
+                coverImage {
+                  url
+                }
+                tags {
+                  name
                   slug
-                  brief
-                  publishedAt
-                  coverImage {
-                    url
-                  }
+                }
+                series {
+                  name
+                  slug
+                }
+                publishedAt
+                updatedAt
+                readTimeInMinutes
+                content {
+                  html
                 }
               }
             }
           }
         }
-      `,
-      variables: {
-        host: HASHNODE_HOST,
-      },
-      fetchPolicy: "no-cache", // Ensure we always fetch fresh data
-    });
+      }
+    `;
 
-    return data.publication.posts.edges.map((edge: any) => edge.node);
-  };
+    const data = await client.request<HashnodeAllPostsResponse>(query);
 
-  static getPostBySlug = async (slug: string) => {
-    const { data } = await client.query({
-      query: gql`
-        query GetPostBySlug($host: String!, $slug: String!) {
-          publication(host: $host) {
-            post(slug: $slug) {
-              title
-              content {
-                markdown
-              }
-              publishedAt
-              coverImage {
-                url
+    return data.publication.posts.edges.map(edge => edge.node);
+  }
+
+
+   static getPostBySlug = async (slug: string) => {
+    const client = getClient();
+
+    const query = gql`
+      query postDetails($slug: String!) {
+        publication(host: "${HASHNODE_HOST}") {
+          id
+          post(slug: $slug) {
+            id
+            author {
+              name
+              profilePicture
+            }
+            publishedAt
+            updatedAt
+            title
+            subtitle
+            readTimeInMinutes
+            slug
+            content {
+              html
+              markdown
+            }
+            tags {
+              name
+              slug
+            }
+            series {
+              name
+              slug
+            }
+            coverImage {
+              url
+            }
+            seo {
+              description
+            }
+            features {
+              tableOfContents {
+                items {
+                  id
+                  level
+                  slug
+                  title
+                  parentId
+                }
               }
             }
           }
         }
-      `,
-      variables: {
-        host: HASHNODE_HOST,
-        slug,
-      },
-    });
+      }
+    `;
+
+    const data = await client.request<PostData>(query, { slug });
 
     return data.publication.post;
-  };
-
-  static getPostIdBySlug = async (slug: string) => {
-    const { data } = await client.query({
-      query: gql`
-        query GetPostId($host: String!, $slug: String!) {
-          publication(host: $host) {
-            post(slug: $slug) {
-              id
-            }
-          }
-        }
-      `,
-      variables: {
-        host: HASHNODE_HOST,
-        slug,
-      },
-    });
-
-    return data.publication.post.id;
-  };
-
-  static likePost = async (postId: string) => {
-    const { data } = await client.mutate({
-      mutation: gql`
-        mutation LikePost($input: LikePostInput!) {
-          likePost(input: $input) {
-            post {
-              id
-              title
-              reactionCount
-              likedBy {
-                totalCount
-              }
-            }
-          }
-        }
-      `,
-      variables: {
-        input: { postId },
-      },
-    });
-
-    return data.likePost.post;
   };
 }
 
 export { HashnodeBlogService };
+
