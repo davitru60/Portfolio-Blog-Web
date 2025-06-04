@@ -2,16 +2,13 @@ import { useEffect } from "react";
 import { Route, Routes, ScrollRestoration, useLocation } from "react-router-dom";
 import "./App.css";
 import { AboutPage } from "./pages/About/AboutPage";
-import { PostContent } from "./pages/Blog/BlogContentful/PostContent";
-import { BlogListTest } from "./pages/Blog/BlogHashnode/BlogListTest";
+import { BlogList } from "./pages/Blog/BlogHashnode/BlogList";
+import { HashnodePostContent } from "./pages/Blog/BlogHashnode/HashnodePostContent";
 import { HomePage } from "./pages/Home/HomePage";
 import { ProjectContent } from "./pages/Projects/ProjectContent";
 import { ProjectsPage } from "./pages/Projects/ProjectsPage";
 import { Footer } from "./shared/components/layout/Footer/Footer";
 import { Navbar } from "./shared/components/ui/Navbar/Navbar";
-import { BlogPageTest } from "./pages/Blog/BlogContentful/BlogPageTest";
-import { HashnodePostContent } from "./pages/Blog/BlogHashnode/HashnodePostContent";
-import { BlogList } from "./pages/Blog/BlogHashnode/BlogList";
 
 
 const usePageTitle = () => {

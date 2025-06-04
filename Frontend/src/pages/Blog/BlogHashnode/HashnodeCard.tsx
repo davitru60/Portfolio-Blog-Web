@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
-import { HashnodeBlogCardProps } from "../../../interfaces/post";
+import { HashnodePostNode } from "../../../interfaces/post";
 
-const HashnodeBlogCard = (posts: HashnodeBlogCardProps) => {
+interface Props {
+  posts: HashnodePostNode[];
+}
 
-  
+const HashnodeBlogCard = ({ posts }: Props) => {
   return (
     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:px-24">
-      {posts.posts.map((post, index) => (
+      {posts.map((post, index) => (
         <Link
           to={`/blog/${post.slug}`}
           key={index}
@@ -16,14 +18,14 @@ const HashnodeBlogCard = (posts: HashnodeBlogCardProps) => {
           {post.coverImage && (
             <div className="w-full">
               <img
-                src={post.coverImage.url}
+                src={post.coverImage.url ?? undefined}
                 alt={post.title}
                 className="mb-4 h-auto max-h-48 w-full object-cover"
               />
             </div>
           )}
 
-          <div className="lex-grow p-4 pt-0">
+          <div className="flex-grow p-4 pt-0">
             <p className="mb-2 text-xs font-semibold text-gray-900 transition-colors dark:text-gray-300">
               {post.author.name} -{" "}
               {new Date(post.publishedAt).toLocaleDateString("es-ES", {
@@ -38,7 +40,7 @@ const HashnodeBlogCard = (posts: HashnodeBlogCardProps) => {
             </h2>
 
             <div className="text-sm text-gray-700 dark:text-white">
-              {post.brief.length > 195 ? post.brief.slice(0, 195) : post.brief}
+              {(post.brief?.length ?? 0) > 195 ? post.brief?.slice(0, 195) : post.brief ?? ""}
             </div>
           </div>
         </Link>
