@@ -10,7 +10,7 @@ const HashnodeBlogCard = ({ posts }: Props) => {
     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:px-24">
       {posts.map((post, index) => (
         <Link
-          to={`/blog/${post.slug}`}
+          to={`https://davitru60.hashnode.dev/${post.slug}`}
           key={index}
           id={`post-${post.slug}`}
           className="dark:blog-card-dark mx-5 flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-black"
