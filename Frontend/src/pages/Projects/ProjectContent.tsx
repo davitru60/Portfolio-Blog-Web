@@ -39,13 +39,7 @@ const ProjectContent = () => {
           </div>
         )}
 
-        {/* Imagen destacada */}
-        <img
-          className="mx-auto mb-4 h-auto max-h-96 w-96 rounded-lg object-cover sm:w-2/3"
-          src={project?.fields.featuredImage.fields.file.url}
-          alt={project?.fields.title || "Imagen destacada"}
-        />
-
+       
         <MarkdownContent content={project?.fields.content} />
 
         {/* Galería de imágenes */}
