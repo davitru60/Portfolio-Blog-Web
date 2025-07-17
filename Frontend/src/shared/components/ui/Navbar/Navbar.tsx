@@ -17,37 +17,35 @@ const Navbar = () => {
   let icon;
 
   if (theme == "dark") {
-    icon = <FaSun className="h-6 w-6 text-yellow-500" />;
+    icon = <FaSun className="h-5 w-5 text-yellow-500" />;
   } else {
-    icon = <FaMoon className="h-6 w-6 text-black" />;
+    icon = <FaMoon className="h-5 w-5 text-black" />;
   }
 
-  // Effect to close the menu when screen size changes
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
-        setIsOpen(false); // Close the menu on wider screens
+        setIsOpen(false); 
       }
     };
 
-    // Add event listener for window resize
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  // Effect to close the menu when the route changes
   useEffect(() => {
-    setIsOpen(false); // Close the menu when the route changes
+    setIsOpen(false); 
   }, [location]);
 
   const links = [
     { path: "/", label: "Inicio" },
-    { path: "/projects", label: "Proyectos" },
-    { path: "/blog", label: "Blog" },
-    { path: "/about", label: "Sobre" },
+    { path: "/projects", label: "Proyectos" }, 
+     /*  { path: "/blog", label: "Blog" },*/
+    { path: "/about", label: "Sobre mí" },
   ];
+
 
   const menuClasses = `overflow-hidden transition-all duration-500 ease-in-out md:hidden ${isOpen ? " max-h-screen" : "max-h-0"}`;
 

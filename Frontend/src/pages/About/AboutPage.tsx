@@ -1,4 +1,5 @@
-import backgroundImage from "../../assets/header.webp";
+import backgroundBlur from "../../assets/header.webp";
+import personalImage from "../../assets/david.png";
 
 const AboutPage = () => {
   return (
@@ -7,7 +8,7 @@ const AboutPage = () => {
         <div
           className="absolute inset-0 rounded-full bg-cover bg-center opacity-25 blur-3xl"
           style={{
-            backgroundImage: `url(${backgroundImage})`,
+            backgroundImage: `url(${backgroundBlur})`,
             zIndex: 50,
             pointerEvents: "none",
             transform: "scale(0.75)",
@@ -23,7 +24,7 @@ const AboutPage = () => {
       <section className="m-5 mt-10 grid max-w-5xl grid-cols-1 items-start gap-8 md:grid-cols-3 md:gap-12 lg:gap-16">
         <div className="flex justify-center md:col-span-1">
           <img
-            src={backgroundImage}
+            src={personalImage}
             alt="David desarrollador"
             className="h-48 w-48 rounded-full object-cover shadow-lg"
           />

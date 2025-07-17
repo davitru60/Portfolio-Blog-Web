@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { ProjectService } from "../../services/contentful/projectService";
 import { MarkdownContent } from "../../shared/components/ui/MarkdownContent/MarkdownContent";
 import { Project } from "../../interfaces/project";
+import { Button } from "../../shared/components/ui/Button/Button";
+
 
 const ProjectContent = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -22,13 +24,24 @@ const ProjectContent = () => {
   }, [slug]);
 
   return (
-    <div className="mx-auto px-2 pt-14 py-10 md:py-20">
+    <div className="mx-auto px-2 py-10 pt-14 md:py-20">
       <div className="mx-auto my-4 max-w-4xl p-4">
         <h1 className="mb-6 text-3xl font-bold">{project?.fields.title}</h1>
 
+        {/* Botón de enlace al proyecto */}
+        {project?.fields.projectUrl && (
+          <div className="mb-6">
+            <Button
+              content="Ver proyecto"
+              className="projectLink"
+              url={project.fields.projectUrl}
+            />
+          </div>
+        )}
+
         {/* Imagen destacada */}
         <img
-          className="mx-auto mb-4 h-auto max-h-96 w-96 sm:w-2/3 rounded-lg object-cover"
+          className="mx-auto mb-4 h-auto max-h-96 w-96 rounded-lg object-cover sm:w-2/3"
           src={project?.fields.featuredImage.fields.file.url}
           alt={project?.fields.title || "Imagen destacada"}
         />
@@ -36,17 +49,23 @@ const ProjectContent = () => {
         <MarkdownContent content={project?.fields.content} />
 
         {/* Galería de imágenes */}
-        <h2 className="mb-4 mt-6 text-2xl font-bold">Imágenes del proyecto</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {project?.fields.gallery.map((img: any, index: number) => (
-            <img
-              key={index}
-              className="h-60 w-full rounded-lg object-cover"
-              src={img.fields.file.url}
-              alt={img.fields.title || `Imagen ${index + 1}`}
-            />
-          ))}
-        </div>
+        {project?.fields.gallery && project.fields.gallery.length > 0 && (
+          <>
+            <h2 className="mb-4 mt-6 text-2xl font-bold">
+              Imágenes del proyecto
+            </h2>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {project.fields.gallery.map((img: any, index: number) => (
+                <img
+                  key={index}
+                  className="h-60 w-full rounded-lg object-cover"
+                  src={img.fields.file.url}
+                  alt={img.fields.title || `Imagen ${index + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

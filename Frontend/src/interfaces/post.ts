@@ -63,7 +63,7 @@ export interface HashnodeSeries {
 
 export interface HashnodeContent {
   html: string;
-  markdown?: string; // puede faltar en algunos contextos
+  markdown?: string;
 }
 
 export interface HashnodeSeo {
@@ -133,4 +133,10 @@ export interface PostData {
     id: string;
     post: HashnodePostNode;
   };
+}
+
+export interface SessionPost{
+  posts: HashnodePostNode[];
+  hasNextPage: boolean;
+  endCursor: string | null;
 }

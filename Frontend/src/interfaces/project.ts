@@ -20,6 +20,7 @@ interface FeaturedImage {
 export interface Project {
   fields: {
     title: string;
+    projectUrl?: string;
     content: string;
     featuredImage: FeaturedImage;
     slug: string;

@@ -39,9 +39,9 @@ const HomeHero = () => {
             <Button content="Contáctame" className={"contact"} />
           </Link>
           <Button
-            className="readArticles"
-            content="Leer artículos"
-            url="/blog"
+            className="projects"
+            content="Ver proyectos"
+            url="/projects"
           ></Button>
         </div>
       </div>

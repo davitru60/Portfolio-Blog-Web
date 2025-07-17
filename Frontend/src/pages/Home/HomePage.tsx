@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { HomeHero } from './HomeHero';
-import { LatestArticles } from './LatestArticles';
 import { Projects } from './Projects';
 import { Skills } from './Skills';
 import { Contact } from './Contact';
@@ -13,7 +12,7 @@ const HomePage = () => {
   useScrollPosition('home'); // Pasar un identificador único para esta página
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Asegura que el scroll se inicie desde la parte superior al cargar la página
+    window.scrollTo(0, 0); 
   }, []);
 
   return (
@@ -21,7 +20,6 @@ const HomePage = () => {
       <HomeHero />
       <Projects />
       <Skills />
-      <LatestArticles />
       <Contact />
     </>
   );
