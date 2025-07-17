@@ -16,7 +16,6 @@ const ProjectsPage = () => {
     const fetchProjects = async () => {
       setIsLoading(true);
       const data = await ProjectService.getProjects();
-      console.log(data)
       setProjects(data.props.projects);
       setIsLoading(false); 
     };
