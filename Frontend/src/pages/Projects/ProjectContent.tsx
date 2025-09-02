@@ -14,6 +14,9 @@ const ProjectContent = () => {
   useEffect(() => {
     const fetchProject = async () => {
       const data = await ProjectService.getProjects();
+    
+
+
       const foundPost = data.props.projects.find(
         (p: Project) => p.fields.slug === slug,
       );
